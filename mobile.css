@@ -1355,18 +1355,35 @@ body.chat-open .assistant-language{
     }
   })();
 })();    
-(function () {
-  function applyMobileCompactFix() {
-    if (window.innerWidth > 768) return;
+@media (max-width: 768px) {
 
-    const style = document.createElement('style');
-    style.id = 'mobile-compact-fix-final';
+  /* NASCONDE TUTTI I LINK MENU */
+  header nav,
+  .top-links,
+  .nav-links,
+  .menu,
+  .navbar-links,
+  .header-links {
+    display: none !important;
+  }
 
-    style.textContent = `
-      @media (max-width: 768px) {
-        body.mobile-preview-mode .mobile-preview-shell {
-          padding: 10px 10px 18px !important;
-          gap: 8px !important;
-        }
+  /* TIENE SOLO IL LOGO */
+  .nav,
+  .navbar,
+  .header-inner {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
 
+  /* LOGO CENTRATO E PULITO */
+  .brand-logo,
+  .logo img,
+  .navbar-brand img {
+    max-height: 64px !important;
+    width: auto !important;
+    display: block;
+    margin: 0 auto;
+  }
 
+}
