@@ -626,6 +626,168 @@
           gap: 8px !important;
         }
 
+
+
+
+        (function () {
+
+  function applyMobileFinalFix() {
+
+    if (window.innerWidth > 768) return;
+
+    const old = document.getElementById('valerio-final-mobile');
+    if (old) old.remove();
+
+    const style = document.createElement('style');
+    style.id = 'valerio-final-mobile';
+
+    style.textContent = `
+      @media (max-width: 768px) {
+
+        /* CONTENITORE */
+        body.mobile-preview-mode .mobile-preview-shell {
+          padding: 8px 10px 14px !important;
+          gap: 8px !important;
+        }
+
+        /* LOGO */
+        body.mobile-preview-mode .mobile-preview-logo-card {
+          padding: 10px 14px !important;
+          border-radius: 22px !important;
+          margin-bottom: 6px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-logo-card img {
+          max-width: 160px !important;
+          width: 100% !important;
+        }
+
+        /* SIAMO APERTI */
+        body.mobile-preview-mode .mobile-preview-status {
+          min-height: 52px !important;
+          padding: 10px 14px !important;
+          border-radius: 18px !important;
+          margin-bottom: 6px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-status-text {
+          font-size: 14px !important;
+          line-height: 1.2 !important;
+        }
+
+        /* HERO */
+        body.mobile-preview-mode .mobile-preview-hero {
+          position: relative !important;
+          display: block !important;
+          width: 100% !important;
+          min-height: 185px !important;
+          border-radius: 26px !important;
+          margin-bottom: 10px !important;
+          overflow: hidden !important;
+        }
+
+        /* MIA GRANDE */
+        body.mobile-preview-mode .mobile-preview-hero-figure,
+        body.mobile-preview-mode .mobile-preview-hero img {
+          position: absolute !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          height: 110% !important;
+          width: auto !important;
+          object-fit: contain !important;
+          z-index: 2 !important;
+        }
+
+        /* BUBBLE */
+        body.mobile-preview-mode .mobile-preview-hero-bubble {
+          position: absolute !important;
+          top: 10px !important;
+          left: 10px !important;
+          width: 58% !important;
+          padding: 14px !important;
+          border-radius: 20px !important;
+          z-index: 3 !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble h2 {
+          font-size: 22px !important;
+          margin-bottom: 6px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble p {
+          font-size: 14px !important;
+        }
+
+        /* BOTTONI */
+        body.mobile-preview-mode .mobile-preview-actions {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 8px !important;
+          margin-bottom: 10px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-action {
+          height: 50px !important;
+          min-height: 50px !important;
+          border-radius: 999px !important;
+          font-size: 14px !important;
+        }
+
+        /* CARD */
+        body.mobile-preview-mode .mobile-preview-grid {
+          display: grid !important;
+          grid-template-columns: 1fr 1fr !important;
+          gap: 10px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card {
+          min-height: 130px !important;
+          border-radius: 20px !important;
+          overflow: hidden !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card-title {
+          font-size: 18px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card-subtitle {
+          font-size: 13px !important;
+        }
+
+        /* BADGE */
+        body.mobile-preview-mode .mobile-preview-badge {
+          width: 34px !important;
+          height: 34px !important;
+          font-size: 18px !important;
+        }
+
+        /* NASCONDI SOTTO */
+        body.mobile-preview-mode .mobile-preview-bottom,
+        body.mobile-preview-mode .mobile-preview-slider-dots {
+          display: none !important;
+        }
+
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyMobileFinalFix);
+  } else {
+    applyMobileFinalFix();
+  }
+
+  window.addEventListener('resize', applyMobileFinalFix);
+
+})();
         body.mobile-preview-mode .mobile-preview-logo-card {
           padding: 14px 16px !important;
           border-radius: 24px !important;
