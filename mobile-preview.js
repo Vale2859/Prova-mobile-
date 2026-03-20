@@ -36,9 +36,10 @@
   );
 
   const logoSrc = existingLogo ? existingLogo.getAttribute("src") : "logo.png";
+  const miaSrc = "images/mia.png?v=2";
 
-  /* FIX MIA: usa direttamente il file giusto */
-  const miaSrc = "images/mia.png";
+  const oldStyle = document.getElementById("mobile-preview-style");
+  if (oldStyle) oldStyle.remove();
 
   const style = document.createElement("style");
   style.id = "mobile-preview-style";
@@ -206,20 +207,22 @@
 
       body.mobile-preview-mode .mobile-preview-mia {
         position: absolute;
-        right: 4px;
+        right: 0;
         bottom: 0;
+        width: 42%;
         height: 100%;
-        width: auto;
-        max-width: none;
-        z-index: 2;
+        z-index: 3;
         display: flex;
         align-items: flex-end;
+        justify-content: flex-end;
+        pointer-events: none;
       }
 
       body.mobile-preview-mode .mobile-preview-mia img {
         display: block;
-        height: 100%;
+        max-height: 96%;
         width: auto;
+        max-width: 100%;
         object-fit: contain;
         filter: drop-shadow(0 10px 18px rgba(0,0,0,0.12));
       }
@@ -415,6 +418,9 @@
     }
   });
 
+  const oldRoot = document.getElementById("mobile-preview-root");
+  if (oldRoot) oldRoot.remove();
+
   const root = document.createElement("div");
   root.id = "mobile-preview-root";
   root.className = "mobile-preview-root";
@@ -442,7 +448,7 @@
       </div>
 
       <div class="mobile-preview-mia">
-        <img src="${miaSrc}" alt="MIA assistente farmacia" onerror="this.onerror=null;this.src='mia.png';">
+        <img src="${miaSrc}" alt="MIA assistente farmacia" onerror="this.onerror=null;this.src='mia.png?v=2';this.style.display='block';">
       </div>
     </a>
 
@@ -502,17 +508,17 @@
 
   document.body.appendChild(root);
 
-   (function updateOpeningStatus() {
+  (function updateOpeningStatus() {
     const dot = document.getElementById("mobilePreviewStatusDot");
     const text = document.getElementById("mobilePreviewStatusText");
     if (!dot || !text) return;
 
     const now = new Date();
-    const day = now.getDay();
+    const day = now.getDay(); // 0 domenica, 1 lunedì ... 6 sabato
     const minutes = now.getHours() * 60 + now.getMinutes();
 
     let isOpen = false;
-    let closingText = "Chiudiamo alle 20:00";
+    let message = "Riapriamo domani";
 
     if (day >= 1 && day <= 5) {
       const morningOpen = 8 * 60 + 30;
@@ -522,28 +528,47 @@
 
       if (minutes >= morningOpen && minutes < morningClose) {
         isOpen = true;
-        closingText = "Chiudiamo alle 13:00";
+        message = "Chiudiamo alle 13:00";
       } else if (minutes >= afternoonOpen && minutes < afternoonClose) {
         isOpen = true;
-        closingText = "Chiudiamo alle 20:00";
+        message = "Chiudiamo alle 20:00";
+      } else if (minutes >= morningClose && minutes < afternoonOpen) {
+        isOpen = false;
+        message = "Riapriamo oggi alle 16:00";
+      } else if (minutes < morningOpen) {
+        isOpen = false;
+        message = "Apriamo oggi alle 8:30";
+      } else {
+        isOpen = false;
+        message = "Riapriamo domani alle 8:30";
       }
     } else if (day === 6) {
       const saturdayOpen = 8 * 60 + 30;
       const saturdayClose = 13 * 60;
+
       if (minutes >= saturdayOpen && minutes < saturdayClose) {
         isOpen = true;
-        closingText = "Chiudiamo alle 13:00";
+        message = "Chiudiamo alle 13:00";
+      } else if (minutes < saturdayOpen) {
+        isOpen = false;
+        message = "Apriamo oggi alle 8:30";
+      } else {
+        isOpen = false;
+        message = "Riapriamo lunedì alle 8:30";
       }
+    } else {
+      isOpen = false;
+      message = "Riapriamo lunedì alle 8:30";
     }
 
     if (isOpen) {
       dot.style.background = "#2aa06f";
       dot.style.boxShadow = "0 0 0 6px rgba(42,160,111,0.10)";
-      text.innerHTML = `Siamo aperti <span class="light">| ${closingText}</span>`;
+      text.innerHTML = `Siamo aperti <span class="light">| ${message}</span>`;
     } else {
       dot.style.background = "#db6b6b";
       dot.style.boxShadow = "0 0 0 6px rgba(219,107,107,0.10)";
-      text.innerHTML = `Siamo chiusi <span class="light">| Riapriamo domani</span>`;
+      text.innerHTML = `Siamo chiusi <span class="light">| ${message}</span>`;
     }
   })();
 })();
