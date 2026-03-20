@@ -144,13 +144,17 @@
         color: #526e68;
       }
 
-      body.mobile-preview-mode .mobile-preview-hero {
+          body.mobile-preview-mode .mobile-preview-hero {
+        display: block;
+        width: 100%;
         position: relative;
         min-height: 258px;
         border-radius: 34px;
         overflow: hidden;
         margin-bottom: 18px;
         box-shadow: 0 14px 28px rgba(21, 56, 49, 0.09);
+        text-decoration: none;
+        color: inherit;
       }
 
       body.mobile-preview-mode .mobile-preview-hero-bg {
