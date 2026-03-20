@@ -1357,31 +1357,8 @@ body.chat-open .assistant-language{
 })();    
 @media (max-width: 768px) {
 
-  /* header più pulito */
-  .home-site-header {
-    padding: 10px 0 !important;
-  }
-
-  /* contenitore header */
-  .home-shell.home-nav-wrap {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 0 !important;
-  }
-
-  /* nasconde menu centrale */
-  .home-desktop-nav {
-    display: none !important;
-    visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* nasconde azioni a destra */
+  /* NASCONDE MENU E AZIONI */
+  .home-desktop-nav,
   .home-nav-actions {
     display: none !important;
     visibility: hidden !important;
@@ -1392,15 +1369,19 @@ body.chat-open .assistant-language{
     pointer-events: none !important;
   }
 
-  /* lascia solo il logo */
+  /* CENTRA HEADER */
+  .home-shell.home-nav-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  /* LOGO CENTRATO */
   .home-brand {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    margin: 0 auto !important;
-  }
-
-  .home-brand-logo-box {
     margin: 0 auto !important;
   }
 
@@ -1411,4 +1392,5 @@ body.chat-open .assistant-language{
     max-width: 160px !important;
     margin: 0 auto !important;
   }
+
 }
