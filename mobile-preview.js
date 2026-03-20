@@ -612,3 +612,188 @@
   })();
 })();
      
+(function () {
+  function applyMobileCompactFix() {
+    if (window.innerWidth > 768) return;
+
+    const style = document.createElement('style');
+    style.id = 'mobile-compact-fix-final';
+
+    style.textContent = `
+      @media (max-width: 768px) {
+        body.mobile-preview-mode .mobile-preview-shell {
+          padding: 10px 10px 18px !important;
+          gap: 8px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-logo-card {
+          padding: 14px 16px !important;
+          border-radius: 24px !important;
+          margin-bottom: 8px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-logo-card img {
+          max-width: 200px !important;
+          width: 100% !important;
+          height: auto !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-status {
+          min-height: 62px !important;
+          padding: 12px 16px !important;
+          border-radius: 22px !important;
+          margin-bottom: 8px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-status-text {
+          font-size: 15px !important;
+          line-height: 1.15 !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-status-dot {
+          width: 14px !important;
+          height: 14px !important;
+          min-width: 14px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero {
+          display: block !important;
+          width: 100% !important;
+          min-height: 190px !important;
+          border-radius: 26px !important;
+          margin-bottom: 10px !important;
+          overflow: hidden !important;
+          text-decoration: none !important;
+          color: inherit !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble {
+          top: 12px !important;
+          left: 12px !important;
+          width: 54% !important;
+          padding: 14px 14px 16px !important;
+          border-radius: 22px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble::after {
+          right: -12px !important;
+          top: 34px !important;
+          width: 24px !important;
+          height: 18px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble h2 {
+          font-size: 22px !important;
+          line-height: 0.98 !important;
+          margin: 0 0 8px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-bubble p {
+          font-size: 14px !important;
+          line-height: 1.2 !important;
+          margin: 0 !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-hero-figure,
+        body.mobile-preview-mode .mobile-preview-hero img,
+        body.mobile-preview-mode .mobile-preview-mia,
+        body.mobile-preview-mode .mobile-preview-mia-img {
+          right: 4px !important;
+          bottom: 0 !important;
+          width: 40% !important;
+          max-width: 145px !important;
+          height: auto !important;
+          object-fit: contain !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-actions {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 8px !important;
+          margin-top: -2px !important;
+          margin-bottom: 10px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-action {
+          min-height: 52px !important;
+          height: 52px !important;
+          padding: 0 10px !important;
+          border-radius: 999px !important;
+          font-size: 14px !important;
+          font-weight: 800 !important;
+          gap: 6px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-action span,
+        body.mobile-preview-mode .mobile-preview-action i {
+          font-size: 14px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-grid {
+          display: grid !important;
+          grid-template-columns: 1fr 1fr !important;
+          gap: 10px !important;
+          margin-top: 0 !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card {
+          min-height: 132px !important;
+          border-radius: 22px !important;
+          overflow: hidden !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card-content {
+          left: 12px !important;
+          right: 12px !important;
+          bottom: 10px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card-title {
+          font-size: 18px !important;
+          line-height: 0.98 !important;
+          margin: 0 0 4px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-card-subtitle {
+          font-size: 13px !important;
+          line-height: 1.1 !important;
+          margin: 0 !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-badge {
+          width: 34px !important;
+          height: 34px !important;
+          font-size: 18px !important;
+          top: 8px !important;
+          right: 8px !important;
+        }
+
+        body.mobile-preview-mode .mobile-preview-slider-dots,
+        body.mobile-preview-mode .mobile-preview-bottom,
+        body.mobile-preview-mode .mobile-preview-bottom-links,
+        body.mobile-preview-mode .mobile-preview-mail,
+        body.mobile-preview-mode .mobile-preview-mappe {
+          display: none !important;
+        }
+      }
+    `;
+
+    const old = document.getElementById('mobile-compact-fix-final');
+    if (old) old.remove();
+    document.head.appendChild(style);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyMobileCompactFix);
+  } else {
+    applyMobileCompactFix();
+  }
+
+  window.addEventListener('resize', applyMobileCompactFix);
+})();
