@@ -1354,8 +1354,7 @@ body.chat-open .assistant-language{
       text.innerHTML = `Siamo chiusi <span class="light">| Riapriamo domani</span>`;
     }
   })();
-})();
-     
+})();    
 (function () {
   function applyMobileCompactFix() {
     if (window.innerWidth > 768) return;
