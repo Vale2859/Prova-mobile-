@@ -502,7 +502,7 @@
 
   document.body.appendChild(root);
 
-  (function updateOpeningStatus() {
+   (function updateOpeningStatus() {
     const dot = document.getElementById("mobilePreviewStatusDot");
     const text = document.getElementById("mobilePreviewStatusText");
     if (!dot || !text) return;
@@ -539,11 +539,11 @@
     if (isOpen) {
       dot.style.background = "#2aa06f";
       dot.style.boxShadow = "0 0 0 6px rgba(42,160,111,0.10)";
-      text.innerHTML = \`Siamo aperti <span class="light">| \${closingText}</span>\`;
+      text.innerHTML = `Siamo aperti <span class="light">| ${closingText}</span>`;
     } else {
       dot.style.background = "#db6b6b";
       dot.style.boxShadow = "0 0 0 6px rgba(219,107,107,0.10)";
-      text.innerHTML = \`Siamo chiusi <span class="light">| Riapriamo domani</span>\`;
+      text.innerHTML = `Siamo chiusi <span class="light">| Riapriamo domani</span>`;
     }
   })();
 })();
