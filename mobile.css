@@ -1357,33 +1357,51 @@ body.chat-open .assistant-language{
 })();    
 @media (max-width: 768px) {
 
-  /* NASCONDE TUTTI I LINK MENU */
-  header nav,
-  .top-links,
-  .nav-links,
-  .menu,
-  .navbar-links,
-  .header-links {
+  /* HEADER centrato */
+  .header {
+    position: static !important;
+  }
+
+  .nav {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: 12px 0 !important;
+    min-height: auto !important;
+  }
+
+  /* NASCONDE TUTTO IL MENU */
+  .top-links {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .top-links a {
     display: none !important;
   }
 
-  /* TIENE SOLO IL LOGO */
-  .nav,
-  .navbar,
-  .header-inner {
+  /* LASCIA SOLO IL LOGO */
+  .brand-logo {
+    display: block !important;
+    height: 62px !important;
+    width: auto !important;
+    margin: 0 auto !important;
+  }
+
+  /* se il logo è dentro un link */
+  .nav > a:first-child,
+  .nav .brand,
+  .nav .logo {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    margin: 0 auto !important;
   }
-
-  /* LOGO CENTRATO E PULITO */
-  .brand-logo,
-  .logo img,
-  .navbar-brand img {
-    max-height: 64px !important;
-    width: auto !important;
-    display: block;
-    margin: 0 auto;
-  }
-
 }
