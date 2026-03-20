@@ -1357,51 +1357,58 @@ body.chat-open .assistant-language{
 })();    
 @media (max-width: 768px) {
 
-  /* HEADER centrato */
-  .header {
-    position: static !important;
+  /* header più pulito */
+  .home-site-header {
+    padding: 10px 0 !important;
   }
 
-  .nav {
+  /* contenitore header */
+  .home-shell.home-nav-wrap {
     display: flex !important;
-    flex-direction: row !important;
     justify-content: center !important;
     align-items: center !important;
     gap: 0 !important;
-    padding: 12px 0 !important;
-    min-height: auto !important;
   }
 
-  /* NASCONDE TUTTO IL MENU */
-  .top-links {
+  /* nasconde menu centrale */
+  .home-desktop-nav {
     display: none !important;
     visibility: hidden !important;
     width: 0 !important;
     height: 0 !important;
     overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
-  .top-links a {
+  /* nasconde azioni a destra */
+  .home-nav-actions {
     display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 
-  /* LASCIA SOLO IL LOGO */
-  .brand-logo {
-    display: block !important;
-    height: 62px !important;
-    width: auto !important;
-    margin: 0 auto !important;
-  }
-
-  /* se il logo è dentro un link */
-  .nav > a:first-child,
-  .nav .brand,
-  .nav .logo {
+  /* lascia solo il logo */
+  .home-brand {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    margin: 0 auto !important;
+  }
+
+  .home-brand-logo-box {
+    margin: 0 auto !important;
+  }
+
+  .home-brand-logo {
+    display: block !important;
+    height: 58px !important;
+    width: auto !important;
+    max-width: 160px !important;
     margin: 0 auto !important;
   }
 }
