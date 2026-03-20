@@ -611,3 +611,97 @@
     }
   })();
 })();
+      body.mobile-preview-mode .mobile-preview-shell {
+        padding: 14px 14px 24px;
+        gap: 12px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-logo-card {
+        padding: 18px 18px;
+        border-radius: 28px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-logo-card img {
+        max-width: 220px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-status {
+        min-height: 74px;
+        padding: 14px 18px;
+        border-radius: 24px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-status-text {
+        font-size: 16px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-hero {
+        display: block;
+        width: 100%;
+        min-height: 228px;
+        margin-bottom: 14px;
+        border-radius: 30px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      body.mobile-preview-mode .mobile-preview-hero-bubble {
+        top: 14px;
+        left: 14px;
+        width: 56%;
+        padding: 16px 16px 18px;
+        border-radius: 24px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-hero-bubble h2 {
+        font-size: 26px;
+        line-height: 1.02;
+        margin-bottom: 8px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-hero-bubble p {
+        font-size: 17px;
+        line-height: 1.25;
+      }
+
+      body.mobile-preview-mode .mobile-preview-hero-figure {
+        right: 6px;
+        width: 42%;
+        max-width: 170px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-actions {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-action {
+        min-height: 58px;
+        font-size: 15px;
+        border-radius: 999px;
+        padding: 0 14px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-grid {
+        gap: 12px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-card {
+        min-height: 158px;
+        border-radius: 24px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-card-title {
+        font-size: 20px;
+        line-height: 1.02;
+      }
+
+      body.mobile-preview-mode .mobile-preview-card-subtitle {
+        font-size: 14px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+      }
