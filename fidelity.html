@@ -10,23 +10,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --bg:#f3f7f5;
+      --bg:#f4f7f5;
       --card:#ffffff;
-      --text:#18352f;
-      --text-soft:#6d7d77;
+      --text:#17352f;
+      --text-soft:#6c7c76;
       --green:#0d7a5f;
-      --green-2:#4fa38f;
-      --green-3:#dff2eb;
+      --green-2:#1b8b6d;
+      --green-3:#e7f5ef;
       --green-4:#eef8f4;
-      --line:#e5eeea;
+      --line:#e4ece8;
       --shadow:0 16px 34px rgba(16,50,42,0.08);
-      --gold:#d7b056;
-      --gold-dark:#8e6b1f;
-      --radius:24px;
+
+      --bronze-1:#b77b48;
+      --bronze-2:#8e5a2f;
+
+      --gold-1:#efd37a;
+      --gold-2:#b98921;
+
+      --diamond-1:#a9e6f8;
+      --diamond-2:#4aa9c8;
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+
     body{
       font-family:"Inter",sans-serif;
       background:
@@ -57,7 +64,7 @@
       height:44px;
       border:none;
       border-radius:14px;
-      background:rgba(255,255,255,0.84);
+      background:rgba(255,255,255,0.88);
       box-shadow:var(--shadow);
       font-size:22px;
       color:var(--text);
@@ -72,7 +79,7 @@
 
     .page-title{
       margin:0;
-      font-size:1.7rem;
+      font-size:1.75rem;
       line-height:1;
       font-weight:900;
       letter-spacing:-0.04em;
@@ -83,28 +90,29 @@
       font-size:.95rem;
       color:var(--text-soft);
       font-weight:600;
+      line-height:1.35;
     }
 
     .fidelity-card{
       position:relative;
       overflow:hidden;
       border-radius:30px;
-      background:
-        radial-gradient(circle at 80% 18%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 34%),
-        linear-gradient(135deg, #0f6f57 0%, #198266 52%, #58a895 100%);
       color:#fff;
       box-shadow:0 24px 40px rgba(13,122,95,0.18);
       padding:18px;
       margin-bottom:16px;
+      background:linear-gradient(135deg,#0f6f57 0%, #198266 52%, #58a895 100%);
     }
 
     .fidelity-card::before{
       content:"";
       position:absolute;
-      inset:auto -40px -26px auto;
-      width:220px;
-      height:160px;
-      background:radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+      right:-30px;
+      top:-18px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 72%);
       pointer-events:none;
     }
 
@@ -142,13 +150,9 @@
       object-fit:contain;
     }
 
-    .brand-text{
-      min-width:0;
-    }
-
     .brand-title{
       margin:0;
-      font-size:1.2rem;
+      font-size:1.18rem;
       line-height:1.05;
       font-weight:900;
       letter-spacing:-0.03em;
@@ -162,35 +166,47 @@
       font-weight:500;
     }
 
-    .gold-badge{
-      flex:0 0 auto;
-      min-width:86px;
-      min-height:86px;
+    .level-badge{
+      min-width:90px;
+      min-height:90px;
       border-radius:50%;
-      background:
-        radial-gradient(circle at 30% 25%, #fff1a8 0%, #efd37a 32%, #d3a53a 70%, #b98921 100%);
       display:flex;
       align-items:center;
       justify-content:center;
       text-align:center;
-      box-shadow:0 10px 18px rgba(0,0,0,0.12);
-      color:#4d3602;
       padding:10px;
       font-weight:900;
       line-height:1.05;
       border:3px solid rgba(255,255,255,0.35);
+      box-shadow:0 10px 18px rgba(0,0,0,0.12);
+      color:#fff;
+      flex:0 0 auto;
     }
 
-    .gold-badge span{
+    .level-badge.bronze{
+      background:radial-gradient(circle at 30% 25%, #d9a275 0%, var(--bronze-1) 45%, var(--bronze-2) 100%);
+    }
+
+    .level-badge.gold{
+      background:radial-gradient(circle at 30% 25%, #fff1a8 0%, var(--gold-1) 32%, #d3a53a 70%, var(--gold-2) 100%);
+      color:#4d3602;
+    }
+
+    .level-badge.diamond{
+      background:radial-gradient(circle at 30% 25%, #f4fdff 0%, var(--diamond-1) 35%, #7fd0eb 70%, var(--diamond-2) 100%);
+      color:#0f4760;
+    }
+
+    .level-badge span{
       display:block;
       font-size:.72rem;
       letter-spacing:.02em;
     }
 
-    .gold-badge strong{
+    .level-badge strong{
       display:block;
       margin-top:4px;
-      font-size:1.08rem;
+      font-size:1.02rem;
     }
 
     .barcode-box{
@@ -260,13 +276,13 @@
       margin:0 0 6px;
       font-size:.82rem;
       font-weight:700;
-      opacity:.88;
+      opacity:.9;
       line-height:1.2;
     }
 
     .stat-value-big{
       margin:0;
-      font-size:2.6rem;
+      font-size:2.7rem;
       line-height:.9;
       font-weight:900;
       letter-spacing:-0.08em;
@@ -274,13 +290,84 @@
 
     .stat-value{
       margin:0;
-      font-size:1.05rem;
-      line-height:1.15;
+      font-size:1.02rem;
+      line-height:1.2;
       font-weight:900;
     }
 
-    .section{
+    .progress-card{
       margin-top:16px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .progress-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:12px;
+    }
+
+    .progress-title{
+      margin:0;
+      font-size:1.18rem;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-0.03em;
+    }
+
+    .progress-sub{
+      margin:6px 0 0;
+      color:var(--text-soft);
+      font-size:.92rem;
+      line-height:1.35;
+      font-weight:600;
+    }
+
+    .level-pill{
+      min-height:34px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:var(--green-4);
+      color:var(--green);
+      font-size:.9rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .progress-track{
+      width:100%;
+      height:16px;
+      border-radius:999px;
+      background:#e6ece9;
+      overflow:hidden;
+      margin-bottom:10px;
+    }
+
+    .progress-bar{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,#16795f 0%, #2ba27c 100%);
+      transition:width .35s ease;
+    }
+
+    .progress-foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color:var(--text-soft);
+      font-size:.9rem;
+      font-weight:700;
+    }
+
+    .section{
+      margin-top:18px;
     }
 
     .section-head{
@@ -293,7 +380,7 @@
 
     .section-title{
       margin:0;
-      font-size:1.55rem;
+      font-size:1.5rem;
       line-height:1.02;
       font-weight:900;
       letter-spacing:-0.04em;
@@ -313,7 +400,7 @@
     }
 
     .info-card{
-      background:rgba(255,255,255,0.88);
+      background:linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
       border:1px solid var(--line);
       border-radius:22px;
       box-shadow:var(--shadow);
@@ -322,10 +409,6 @@
       display:flex;
       flex-direction:column;
       justify-content:space-between;
-    }
-
-    .info-card.soft{
-      background:linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
     }
 
     .info-label{
@@ -344,6 +427,10 @@
       line-height:1;
     }
 
+    .gain.minus{
+      color:#b34a4a;
+    }
+
     .gain small{
       font-size:.92rem;
       font-weight:800;
@@ -356,54 +443,13 @@
       font-weight:600;
     }
 
-    .action-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .action-card{
-      background:linear-gradient(180deg, #ffffff 0%, #f4faf7 100%);
-      border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:var(--shadow);
-      min-height:122px;
-      padding:16px 14px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .action-title{
-      margin:0;
-      font-size:1.05rem;
-      line-height:1.1;
-      font-weight:900;
-      letter-spacing:-0.02em;
-    }
-
-    .action-sub{
-      margin:6px 0 0;
-      font-size:.9rem;
-      line-height:1.35;
-      color:var(--text-soft);
-      font-weight:600;
-    }
-
-    .action-emoji{
-      font-size:2rem;
-      line-height:1;
-      align-self:flex-end;
-      opacity:.9;
-    }
-
-    .received-list{
+    .activity-list{
       display:flex;
       flex-direction:column;
       gap:10px;
     }
 
-    .received-item{
+    .activity-item{
       background:#fff;
       border:1px solid var(--line);
       border-radius:20px;
@@ -414,7 +460,7 @@
       gap:12px;
     }
 
-    .received-icon{
+    .activity-icon{
       width:48px;
       height:48px;
       border-radius:16px;
@@ -425,24 +471,57 @@
       flex:0 0 48px;
     }
 
-    .received-text{
+    .activity-text{
       min-width:0;
       flex:1;
     }
 
-    .received-name{
+    .activity-name{
       margin:0 0 4px;
       font-size:1rem;
       font-weight:900;
       line-height:1.1;
     }
 
-    .received-meta{
+    .activity-meta{
       margin:0;
       font-size:.88rem;
       color:var(--text-soft);
       font-weight:600;
       line-height:1.35;
+    }
+
+    .activity-points{
+      flex:0 0 auto;
+      font-size:.98rem;
+      font-weight:900;
+      color:var(--green);
+      white-space:nowrap;
+    }
+
+    .empty-card{
+      background:linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
+      border:1px dashed #d8e4de;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:18px 16px;
+      text-align:center;
+    }
+
+    .empty-card-title{
+      margin:0 0 8px;
+      font-size:1.08rem;
+      line-height:1.1;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .empty-card-text{
+      margin:0;
+      color:var(--text-soft);
+      font-size:.94rem;
+      line-height:1.5;
+      font-weight:600;
     }
 
     .big-cta{
@@ -550,14 +629,14 @@
 
     @media (max-width:390px){
       .page{padding:12px 12px 24px}
+      .page-title{font-size:1.65rem}
       .client-code{font-size:1.75rem}
-      .gold-badge{
-        min-width:80px;
-        min-height:80px;
+      .level-badge{
+        min-width:82px;
+        min-height:82px;
       }
-      .stat-value-big{font-size:2.3rem}
-      .section-title{font-size:1.42rem}
-      .info-card,.action-card{min-height:116px}
+      .stat-value-big{font-size:2.35rem}
+      .section-title{font-size:1.38rem}
     }
   </style>
 </head>
@@ -567,7 +646,7 @@
       <button class="back-btn" onclick="history.back()" aria-label="Indietro">←</button>
       <div class="title-wrap">
         <h1 class="page-title">Fidelity</h1>
-        <p class="page-subtitle">La tua card personale della farmacia</p>
+        <p class="page-subtitle">La tua card personale, i punti e la tua attività</p>
       </div>
     </div>
 
@@ -577,16 +656,16 @@
           <div class="brand-icon">
             <img src="logo.png" alt="Logo Farmacia Montesano" onerror="this.style.display='none'">
           </div>
-          <div class="brand-text">
+          <div>
             <h2 class="brand-title">Tessera Fedeltà</h2>
             <p class="brand-subtitle">Farmacia Montesano</p>
           </div>
         </div>
 
-        <div class="gold-badge">
+        <div class="level-badge bronze" id="levelBadge">
           <div>
             <span>LIVELLO</span>
-            <strong id="levelBadge">GOLD</strong>
+            <strong>BRONZE</strong>
           </div>
         </div>
       </div>
@@ -594,105 +673,61 @@
       <div class="barcode-box">
         <p class="barcode-label">CODICE CLIENTE</p>
         <svg id="barcodeSvg" class="barcode-svg" viewBox="0 0 360 92" preserveAspectRatio="none"></svg>
-        <p class="client-code" id="clientCodeText">FM10248375</p>
+        <p class="client-code" id="clientCodeText">FM00000000</p>
         <p class="barcode-note">Mostra questo codice alla cassa per accumulare punti</p>
       </div>
 
       <div class="card-stats">
         <div class="stat-box">
           <p class="stat-label">Punti disponibili</p>
-          <p class="stat-value-big" id="pointsValue">3.180</p>
+          <p class="stat-value-big" id="pointsValue">0</p>
         </div>
 
         <div class="stat-box">
           <p class="stat-label">Prossimo premio</p>
-          <p class="stat-value" id="nextReward">Voucher beauty</p>
+          <p class="stat-value" id="nextReward">Primo premio disponibile</p>
           <div style="height:10px"></div>
           <p class="stat-label">Ti mancano</p>
-          <p class="stat-value" id="pointsMissing">120 punti</p>
+          <p class="stat-value" id="pointsMissing">1.000 punti</p>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-head">
-        <h3 class="section-title">Le tue attività</h3>
-        <a href="#" class="section-link">Vedi tutto</a>
+    <section class="progress-card">
+      <div class="progress-head">
+        <div>
+          <h3 class="progress-title">Progressione livello</h3>
+          <p class="progress-sub" id="progressText">Ti mancano 1.000 punti al livello Gold</p>
+        </div>
+        <div class="level-pill" id="currentLevelPill">Bronze</div>
       </div>
 
-      <div class="cards-2" id="activityCards">
-        <article class="info-card soft">
-          <div>
-            <p class="info-label">Ultimo acquisto</p>
-            <p class="gain">+480 <small>punti</small></p>
-          </div>
-          <p class="date">22 Aprile 2026</p>
-        </article>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
 
-        <article class="info-card soft">
-          <div>
-            <p class="info-label">Bonus evento farmacia</p>
-            <p class="gain">+300 <small>punti</small></p>
-          </div>
-          <p class="date">15 Aprile 2026</p>
-        </article>
+      <div class="progress-foot">
+        <span id="currentLevelLabel">Bronze</span>
+        <span id="nextLevelLabel">Gold</span>
       </div>
     </section>
 
     <section class="section">
       <div class="section-head">
-        <h3 class="section-title">Usa la tua fidelity</h3>
+        <h3 class="section-title">La tua attività</h3>
+        <a href="attivita.html" class="section-link">Vedi tutto</a>
       </div>
 
-      <div class="action-grid">
-        <a href="premi.html" class="action-card">
-          <div>
-            <h4 class="action-title">Sfoglia il catalogo premi</h4>
-            <p class="action-sub">Scopri prodotti, voucher e omaggi riscattabili.</p>
-          </div>
-          <div class="action-emoji">🎁</div>
-        </a>
-
-        <a href="profilo.html" class="action-card">
-          <div>
-            <h4 class="action-title">Apri la scheda cliente</h4>
-            <p class="action-sub">Visualizza i tuoi dati e mostra il codice in farmacia.</p>
-          </div>
-          <div class="action-emoji">💚</div>
-        </a>
-      </div>
+      <div id="activityCards"></div>
     </section>
 
     <section class="section">
       <div class="section-head">
-        <h3 class="section-title">Premi già ricevuti</h3>
+        <h3 class="section-title">Ultime operazioni</h3>
+        <a href="attivita.html" class="section-link">Storico</a>
       </div>
 
-      <div class="received-list" id="receivedList">
-        <article class="received-item">
-          <div class="received-icon">🧴</div>
-          <div class="received-text">
-            <p class="received-name">Crema viso omaggio</p>
-            <p class="received-meta">Ricevuta con evento beauty · 10 Aprile 2026</p>
-          </div>
-        </article>
-
-        <article class="received-item">
-          <div class="received-icon">☕</div>
-          <div class="received-text">
-            <p class="received-name">Tisana benessere</p>
-            <p class="received-meta">Premio riscattato · 28 Marzo 2026</p>
-          </div>
-        </article>
-
-        <article class="received-item">
-          <div class="received-icon">🎟️</div>
-          <div class="received-text">
-            <p class="received-name">Voucher analisi pelle</p>
-            <p class="received-meta">Bonus farmacia · 18 Marzo 2026</p>
-          </div>
-        </article>
-      </div>
+      <div id="activityList"></div>
     </section>
 
     <button class="big-cta" onclick="openCodeOverlay()">
@@ -701,7 +736,7 @@
     </button>
 
     <p class="small-note">
-      I vantaggi fidelity, i bonus e i premi possono cambiare in base alle iniziative della Farmacia Montesano.
+      I livelli, i punti e i premi si aggiorneranno automaticamente man mano che userai il programma fedeltà.
     </p>
   </main>
 
@@ -714,28 +749,27 @@
 
       <p class="full-code-label">CODICE CLIENTE</p>
       <svg id="barcodeSvgLarge" class="barcode-svg" viewBox="0 0 360 92" preserveAspectRatio="none"></svg>
-      <p class="full-code-id" id="clientCodeTextLarge">FM10248375</p>
+      <p class="full-code-id" id="clientCodeTextLarge">FM00000000</p>
       <p class="full-code-note">Mostra questo codice al personale della farmacia per il caricamento dei punti.</p>
     </div>
   </div>
 
   <script>
-    const demoFidelityData = {
-      clientCode: "FM10248375",
-      points: 3180,
-      level: "Gold",
-      nextReward: "Voucher beauty",
-      missing: 120,
-      activities: [
-        { label: "Ultimo acquisto", points: 480, date: "22 Aprile 2026" },
-        { label: "Bonus evento farmacia", points: 300, date: "15 Aprile 2026" }
-      ],
-      received: [
-        { icon: "🧴", name: "Crema viso omaggio", meta: "Ricevuta con evento beauty · 10 Aprile 2026" },
-        { icon: "☕", name: "Tisana benessere", meta: "Premio riscattato · 28 Marzo 2026" },
-        { icon: "🎟️", name: "Voucher analisi pelle", meta: "Bonus farmacia · 18 Marzo 2026" }
-      ]
+    const emptyFidelityData = {
+      clientCode: "FM00000000",
+      points: 0,
+      level: "Bronze",
+      nextReward: "Primo premio disponibile",
+      missing: 1000,
+      activities: [],
+      operations: []
     };
+
+    const LEVELS = [
+      { key: "Bronze", min: 0, max: 999, next: "Gold" },
+      { key: "Gold", min: 1000, max: 2999, next: "Diamond" },
+      { key: "Diamond", min: 3000, max: Infinity, next: null }
+    ];
 
     function formatPoints(num) {
       return new Intl.NumberFormat("it-IT").format(num);
@@ -743,27 +777,60 @@
 
     function loadFidelityData() {
       try {
-        const savedProfile = localStorage.getItem("farmaciaProfileData");
-        const savedPoints = localStorage.getItem("farmaciaPuntiData");
+        const profileRaw = localStorage.getItem("farmaciaProfileData");
+        const pointsRaw = localStorage.getItem("farmaciaPuntiData");
 
-        const profileData = savedProfile ? JSON.parse(savedProfile) : {};
-        const pointsData = savedPoints ? JSON.parse(savedPoints) : {};
+        const profileData = profileRaw ? JSON.parse(profileRaw) : {};
+        const pointsData = pointsRaw ? JSON.parse(pointsRaw) : {};
 
         return {
-          ...demoFidelityData,
-          ...profileData,
-          ...pointsData,
-          clientCode: profileData.clientCode || demoFidelityData.clientCode,
-          points: profileData.points ?? pointsData.points ?? demoFidelityData.points,
-          level: profileData.level || pointsData.level || demoFidelityData.level,
-          nextReward: pointsData.nextReward || demoFidelityData.nextReward,
-          missing: pointsData.missing ?? demoFidelityData.missing,
-          activities: pointsData.activities || demoFidelityData.activities,
-          received: pointsData.received || demoFidelityData.received
+          ...emptyFidelityData,
+          clientCode: profileData.clientCode || profileData.clientId || emptyFidelityData.clientCode,
+          points: Number(profileData.points ?? pointsData.points ?? 0),
+          level: profileData.level || pointsData.level || "Bronze",
+          nextReward: pointsData.nextReward || "Primo premio disponibile",
+          missing: Number(pointsData.missing ?? 1000),
+          activities: Array.isArray(pointsData.activities) ? pointsData.activities : [],
+          operations: Array.isArray(pointsData.operations) ? pointsData.operations : []
         };
       } catch (e) {
-        return demoFidelityData;
+        return emptyFidelityData;
       }
+    }
+
+    function getLevelInfo(points) {
+      const level = LEVELS.find(l => points >= l.min && points <= l.max) || LEVELS[0];
+
+      let progress = 100;
+      let missing = 0;
+      let next = level.next;
+
+      if (level.key === "Bronze") {
+        progress = Math.min(100, (points / 1000) * 100);
+        missing = Math.max(0, 1000 - points);
+      } else if (level.key === "Gold") {
+        progress = Math.min(100, ((points - 1000) / 2000) * 100);
+        missing = Math.max(0, 3000 - points);
+      } else {
+        progress = 100;
+        missing = 0;
+        next = null;
+      }
+
+      return { ...level, progress, missing, next };
+    }
+
+    function renderBadge(levelKey) {
+      const badge = document.getElementById("levelBadge");
+      if (!badge) return;
+
+      badge.className = "level-badge " + String(levelKey || "Bronze").toLowerCase();
+      badge.innerHTML = `
+        <div>
+          <span>LIVELLO</span>
+          <strong>${String(levelKey).toUpperCase()}</strong>
+        </div>
+      `;
     }
 
     function renderBarcode(svgId, code) {
@@ -813,44 +880,101 @@
       });
     }
 
-    function renderPage() {
+    function renderActivityCards(activities) {
+      const wrap = document.getElementById("activityCards");
+      if (!wrap) return;
+
+      if (!activities.length) {
+        wrap.innerHTML = `
+          <div class="empty-card">
+            <p class="empty-card-title">Nessuna attività disponibile</p>
+            <p class="empty-card-text">
+              Quando farai i tuoi primi acquisti o riceverai bonus, li vedrai qui.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      wrap.innerHTML = `
+        <div class="cards-2">
+          ${activities.slice(0, 2).map(item => `
+            <article class="info-card">
+              <div>
+                <p class="info-label">${item.label}</p>
+                <p class="gain ${item.points < 0 ? "minus" : ""}">
+                  ${item.points > 0 ? "+" : ""}${formatPoints(item.points)} <small>punti</small>
+                </p>
+              </div>
+              <p class="date">${item.date || ""}</p>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderOperations(operations) {
+      const wrap = document.getElementById("activityList");
+      if (!wrap) return;
+
+      if (!operations.length) {
+        wrap.innerHTML = `
+          <div class="empty-card">
+            <p class="empty-card-title">Non ci sono ancora operazioni</p>
+            <p class="empty-card-text">
+              Lo storico completo apparirà qui dopo i primi movimenti punti.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      wrap.innerHTML = `
+        <div class="activity-list">
+          ${operations.slice(0, 3).map(item => `
+            <article class="activity-item">
+              <div class="activity-icon">${item.icon || "★"}</div>
+              <div class="activity-text">
+                <p class="activity-name">${item.name || "Operazione"}</p>
+                <p class="activity-meta">${item.meta || ""}</p>
+              </div>
+              <div class="activity-points">${item.points > 0 ? "+" : ""}${formatPoints(item.points || 0)}</div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderFidelity() {
       const data = loadFidelityData();
+      const points = Number(data.points || 0);
+      const levelInfo = getLevelInfo(points);
 
       document.getElementById("clientCodeText").textContent = data.clientCode;
       document.getElementById("clientCodeTextLarge").textContent = data.clientCode;
-      document.getElementById("pointsValue").textContent = formatPoints(data.points || 0);
-      document.getElementById("nextReward").textContent = data.nextReward || "Premio disponibile";
-      document.getElementById("pointsMissing").textContent = `${formatPoints(data.missing || 0)} punti`;
-      document.getElementById("levelBadge").textContent = String(data.level || "Gold").toUpperCase();
+      document.getElementById("pointsValue").textContent = formatPoints(points);
+      document.getElementById("nextReward").textContent = data.nextReward || "Primo premio disponibile";
+      document.getElementById("pointsMissing").textContent =
+        levelInfo.next ? `${formatPoints(levelInfo.missing)} punti` : "Livello max";
 
+      renderBadge(levelInfo.key);
       renderBarcode("barcodeSvg", data.clientCode);
       renderBarcode("barcodeSvgLarge", data.clientCode);
 
-      const activityCards = document.getElementById("activityCards");
-      if (Array.isArray(data.activities) && data.activities.length) {
-        activityCards.innerHTML = data.activities.slice(0, 2).map(item => `
-          <article class="info-card soft">
-            <div>
-              <p class="info-label">${item.label}</p>
-              <p class="gain">+${formatPoints(item.points)} <small>punti</small></p>
-            </div>
-            <p class="date">${item.date}</p>
-          </article>
-        `).join("");
+      document.getElementById("currentLevelPill").textContent = levelInfo.key;
+      document.getElementById("currentLevelLabel").textContent = levelInfo.key;
+      document.getElementById("nextLevelLabel").textContent = levelInfo.next || "Top";
+      document.getElementById("progressBar").style.width = `${levelInfo.progress}%`;
+
+      const progressText = document.getElementById("progressText");
+      if (levelInfo.next) {
+        progressText.textContent = `Ti mancano ${formatPoints(levelInfo.missing)} punti al livello ${levelInfo.next}`;
+      } else {
+        progressText.textContent = "Hai raggiunto il livello massimo disponibile";
       }
 
-      const receivedList = document.getElementById("receivedList");
-      if (Array.isArray(data.received) && data.received.length) {
-        receivedList.innerHTML = data.received.map(item => `
-          <article class="received-item">
-            <div class="received-icon">${item.icon}</div>
-            <div class="received-text">
-              <p class="received-name">${item.name}</p>
-              <p class="received-meta">${item.meta}</p>
-            </div>
-          </article>
-        `).join("");
-      }
+      renderActivityCards(data.activities || []);
+      renderOperations(data.operations || []);
     }
 
     function openCodeOverlay() {
@@ -867,7 +991,7 @@
       if (e.target === this) closeCodeOverlay();
     });
 
-    renderPage();
+    renderFidelity();
   </script>
 </body>
 </html>
