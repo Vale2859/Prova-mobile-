@@ -20,11 +20,19 @@
     miaLink: "assistente.html",
 
     heroImage: "farmacia3.jpg",
+
     cardImages: {
       servizi: "images/servizi.jpg",
       promo: "images/promo.jpg",
       beauty: "images/beauty.jpg",
       turno: "images/turno.jpg"
+    },
+
+    extraCardImages: {
+      punti: "images/punti.jpg",
+      fortuna: "images/fortuna.jpg",
+      premi: "images/premi.jpg",
+      profilo: "images/profilo.jpg"
     },
 
     promoBadge: "1",
@@ -266,6 +274,30 @@
         background: linear-gradient(135deg, #69b5af 0%, #47a9b0 100%);
       }
 
+      body.mobile-preview-mode .mobile-preview-slider {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      body.mobile-preview-mode .mobile-preview-slider-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      body.mobile-preview-mode .mobile-preview-slider-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      body.mobile-preview-mode .mobile-preview-slider-page {
+        min-width: 100%;
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+      }
+
       body.mobile-preview-mode .mobile-preview-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -340,7 +372,26 @@
         box-shadow: 0 10px 18px rgba(255,106,132,0.28);
       }
 
-      body.mobile-preview-mode .mobile-preview-dots,
+      body.mobile-preview-mode .mobile-preview-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      body.mobile-preview-mode .mobile-preview-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #d9d9d9;
+        transition: all 0.2s ease;
+      }
+
+      body.mobile-preview-mode .mobile-preview-dot.active {
+        background: #6eb8b0;
+        transform: scale(1.08);
+      }
+
       body.mobile-preview-mode .mobile-preview-bottom-links {
         display: none;
       }
@@ -469,44 +520,106 @@
       </a>
     </section>
 
-    <section class="mobile-preview-grid" aria-label="Collegamenti rapidi">
-      <a href="${CONFIG.serviziLink}" class="mobile-preview-card">
-        <img src="${CONFIG.cardImages.servizi}" alt="Servizi">
-        <div class="mobile-preview-card-content">
-          <h3 class="mobile-preview-card-title">Servizi</h3>
-          <p class="mobile-preview-card-text">Esami e consulenze</p>
-        </div>
-      </a>
+    <section class="mobile-preview-slider" aria-label="Collegamenti rapidi">
+      <div class="mobile-preview-slider-track" id="mobilePreviewSliderTrack">
 
-      <a href="${CONFIG.promoLink}" class="mobile-preview-card">
-        <img src="${CONFIG.cardImages.promo}" alt="Offerte">
-        <span class="mobile-preview-badge">${CONFIG.promoBadge}</span>
-        <div class="mobile-preview-card-content">
-          <h3 class="mobile-preview-card-title">Offerte</h3>
-          <p class="mobile-preview-card-text">Promozioni</p>
-        </div>
-      </a>
+        <div class="mobile-preview-slider-page">
+          <div class="mobile-preview-grid">
+            <a href="${CONFIG.serviziLink}" class="mobile-preview-card">
+              <img src="${CONFIG.cardImages.servizi}" alt="Servizi">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Servizi</h3>
+                <p class="mobile-preview-card-text">Esami e consulenze</p>
+              </div>
+            </a>
 
-      <a href="${CONFIG.beautyLink}" class="mobile-preview-card">
-        <img src="${CONFIG.cardImages.beauty}" alt="Giornate Beauty">
-        <span class="mobile-preview-badge">${CONFIG.beautyBadge}</span>
-        <div class="mobile-preview-card-content">
-          <h3 class="mobile-preview-card-title">Giornate<br>Beauty</h3>
-          <p class="mobile-preview-card-text">Eventi benessere</p>
-        </div>
-      </a>
+            <a href="${CONFIG.promoLink}" class="mobile-preview-card">
+              <img src="${CONFIG.cardImages.promo}" alt="Offerte">
+              <span class="mobile-preview-badge">${CONFIG.promoBadge}</span>
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Offerte</h3>
+                <p class="mobile-preview-card-text">Promozioni</p>
+              </div>
+            </a>
 
-      <a href="${CONFIG.turnoLink}" class="mobile-preview-card">
-        <img src="${CONFIG.cardImages.turno}" alt="Farmacie di turno">
-        <div class="mobile-preview-card-content">
-          <h3 class="mobile-preview-card-title">Farmacie<br>di turno</h3>
-          <p class="mobile-preview-card-text">Trova la farmacia aperta</p>
+            <a href="${CONFIG.beautyLink}" class="mobile-preview-card">
+              <img src="${CONFIG.cardImages.beauty}" alt="Giornate Beauty">
+              <span class="mobile-preview-badge">${CONFIG.beautyBadge}</span>
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Giornate<br>Beauty</h3>
+                <p class="mobile-preview-card-text">Eventi benessere</p>
+              </div>
+            </a>
+
+            <a href="${CONFIG.turnoLink}" class="mobile-preview-card">
+              <img src="${CONFIG.cardImages.turno}" alt="Farmacie di turno">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Farmacie<br>di turno</h3>
+                <p class="mobile-preview-card-text">Trova la farmacia aperta</p>
+              </div>
+            </a>
+          </div>
         </div>
-      </a>
+
+        <div class="mobile-preview-slider-page">
+          <div class="mobile-preview-grid">
+            <a href="punti.html" class="mobile-preview-card">
+              <img src="${CONFIG.extraCardImages.punti}" alt="Punti">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Punti</h3>
+                <p class="mobile-preview-card-text">Saldo e premi</p>
+              </div>
+            </a>
+
+            <a href="fortuna.html" class="mobile-preview-card">
+              <img src="${CONFIG.extraCardImages.fortuna}" alt="Fortuna">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Fortuna</h3>
+                <p class="mobile-preview-card-text">Gioca oggi</p>
+              </div>
+            </a>
+
+            <a href="premi.html" class="mobile-preview-card">
+              <img src="${CONFIG.extraCardImages.premi}" alt="Premi">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Premi</h3>
+                <p class="mobile-preview-card-text">Riscatta</p>
+              </div>
+            </a>
+
+            <a href="profilo.html" class="mobile-preview-card">
+              <img src="${CONFIG.extraCardImages.profilo}" alt="Profilo">
+              <div class="mobile-preview-card-content">
+                <h3 class="mobile-preview-card-title">Profilo</h3>
+                <p class="mobile-preview-card-text">I tuoi dati</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mobile-preview-dots" aria-hidden="true">
+        <span class="mobile-preview-dot active"></span>
+        <span class="mobile-preview-dot"></span>
+      </div>
     </section>
   `;
 
   document.body.appendChild(root);
+
+  const sliderTrack = document.getElementById("mobilePreviewSliderTrack");
+  const sliderDots = document.querySelectorAll(".mobile-preview-dot");
+
+  if (sliderTrack && sliderDots.length) {
+    sliderTrack.addEventListener("scroll", () => {
+      const pageIndex = Math.round(sliderTrack.scrollLeft / sliderTrack.offsetWidth);
+
+      sliderDots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === pageIndex);
+      });
+    });
+  }
 
   (function updateOpeningStatus() {
     const dot = document.getElementById("mobilePreviewStatusDot");
@@ -514,7 +627,7 @@
     if (!dot || !text) return;
 
     const now = new Date();
-    const day = now.getDay(); // 0 domenica, 1 lunedì ... 6 sabato
+    const day = now.getDay();
     const minutes = now.getHours() * 60 + now.getMinutes();
 
     let isOpen = false;
