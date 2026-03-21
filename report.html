@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Report Operatori | Farmacia Montesano</title>
+<style>
+  :root{
+    --bg:#f4f7f5;
+    --card:#ffffff;
+    --text:#17352f;
+    --text-soft:#6c7c76;
+    --green:#0d7a5f;
+    --green-2:#1b8b6d;
+    --green-3:#e7f5ef;
+    --line:#e4ece8;
+    --shadow:0 16px 34px rgba(16,50,42,0.08);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+
+  .page{
+    width:min(1400px, calc(100% - 40px));
+    margin:24px auto 40px;
+  }
+
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:20px;
+  }
+
+  .title h1{
+    margin:0;
+    font-size:34px;
+    line-height:1;
+  }
+
+  .title p{
+    margin:8px 0 0;
+    color:var(--text-soft);
+    font-size:16px;
+    font-weight:600;
+  }
+
+  .back-btn{
+    padding:12px 18px;
+    border:none;
+    border-radius:14px;
+    background:#fff;
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+  }
+
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+    margin-bottom:20px;
+  }
+
+  .stat-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    padding:18px;
+  }
+
+  .stat-label{
+    margin:0 0 8px;
+    color:var(--text-soft);
+    font-size:14px;
+    font-weight:700;
+  }
+
+  .stat-value{
+    margin:0;
+    font-size:34px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-0.04em;
+  }
+
+  .filters{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr auto;
+    gap:12px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    padding:16px;
+    margin-bottom:20px;
+  }
+
+  .filters input,
+  .filters select{
+    width:100%;
+    min-height:46px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:0 14px;
+    font-size:15px;
+    background:#fff;
+  }
+
+  .filters button{
+    min-height:46px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#1a8b6c 0%, #58a891 100%);
+    color:#fff;
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+    padding:0 18px;
+  }
+
+  .layout{
+    display:grid;
+    grid-template-columns: 360px 1fr;
+    gap:20px;
+  }
+
+  .panel{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:var(--shadow);
+    padding:18px;
+  }
+
+  .panel-title{
+    margin:0 0 14px;
+    font-size:24px;
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-0.03em;
+  }
+
+  .ranking-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .ranking-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px;
+    border-radius:16px;
+    background:linear-gradient(180deg,#f7fbf9 0%, #f1f8f4 100%);
+    border:1px solid #dfece6;
+  }
+
+  .ranking-left{
+    min-width:0;
+  }
+
+  .ranking-name{
+    margin:0 0 4px;
+    font-size:16px;
+    font-weight:900;
+  }
+
+  .ranking-meta{
+    margin:0;
+    color:var(--text-soft);
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .ranking-points{
+    font-size:18px;
+    font-weight:900;
+    color:var(--green);
+    white-space:nowrap;
+  }
+
+  .table-wrap{
+    overflow:auto;
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+
+  thead th{
+    text-align:left;
+    font-size:13px;
+    color:var(--text-soft);
+    font-weight:800;
+    padding:0 0 12px;
+    border-bottom:1px solid var(--line);
+  }
+
+  tbody td{
+    padding:14px 0;
+    border-bottom:1px solid #eef2f0;
+    font-size:14px;
+    vertical-align:top;
+  }
+
+  tbody tr:last-child td{
+    border-bottom:none;
+  }
+
+  .points{
+    font-weight:900;
+    color:var(--green);
+  }
+
+  .empty{
+    padding:18px;
+    border-radius:18px;
+    border:1px dashed #d8e4de;
+    background:linear-gradient(180deg,#ffffff 0%, #f6fbf8 100%);
+    text-align:center;
+    color:var(--text-soft);
+    font-weight:700;
+  }
+
+  @media (max-width: 1100px){
+    .stats-grid{
+      grid-template-columns:repeat(2, 1fr);
+    }
+
+    .filters{
+      grid-template-columns:1fr 1fr;
+    }
+
+    .layout{
+      grid-template-columns:1fr;
+    }
+  }
+
+  @media (max-width: 700px){
+    .page{
+      width:min(100%, calc(100% - 24px));
+      margin:12px auto 24px;
+    }
+
+    .stats-grid{
+      grid-template-columns:1fr;
+    }
+
+    .filters{
+      grid-template-columns:1fr;
+    }
+
+    .title h1{
+      font-size:28px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="topbar">
+    <div class="title">
+      <h1>Report Operatori</h1>
+      <p>Controlla accrediti, operatori, clienti e andamento del programma punti</p>
+    </div>
+    <button class="back-btn" onclick="history.back()">← Indietro</button>
+  </div>
+
+  <section class="stats-grid">
+    <div class="stat-card">
+      <p class="stat-label">Totale operazioni</p>
+      <p class="stat-value" id="totalOps">0</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Totale punti erogati</p>
+      <p class="stat-value" id="totalPoints">0</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Operatori attivi</p>
+      <p class="stat-value" id="activeOperators">0</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Clienti serviti</p>
+      <p class="stat-value" id="servedClients">0</p>
+    </div>
+  </section>
+
+  <section class="filters">
+    <input type="text" id="filterOperatore" placeholder="Filtra per operatore">
+    <input type="text" id="filterCliente" placeholder="Filtra per cliente">
+    <input type="date" id="filterData">
+    <select id="filterTipo">
+      <option value="all">Tutti gli accrediti</option>
+      <option value="small">Fino a 20 punti</option>
+      <option value="medium">Da 21 a 100 punti</option>
+      <option value="large">Oltre 100 punti</option>
+    </select>
+    <button onclick="applyFilters()">Filtra</button>
+  </section>
+
+  <section class="layout">
+    <div class="panel">
+      <h2 class="panel-title">Classifica operatori</h2>
+      <div id="rankingWrap"></div>
+    </div>
+
+    <div class="panel">
+      <h2 class="panel-title">Storico accrediti</h2>
+      <div id="tableWrap" class="table-wrap"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  function formatNumber(num) {
+    return new Intl.NumberFormat("it-IT").format(num);
+  }
+
+  function loadOperatorLog() {
+    try {
+      const raw = localStorage.getItem("farmaciaOperatorLog");
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  let allLogs = loadOperatorLog();
+  let filteredLogs = [...allLogs];
+
+  function renderStats(logs) {
+    const totalOps = logs.length;
+    const totalPoints = logs.reduce((sum, item) => sum + Number(item.punti || 0), 0);
+
+    const operatorSet = new Set(logs.map(item => item.badge || item.operatore).filter(Boolean));
+    const clientSet = new Set(logs.map(item => item.cliente).filter(Boolean));
+
+    document.getElementById("totalOps").textContent = formatNumber(totalOps);
+    document.getElementById("totalPoints").textContent = formatNumber(totalPoints);
+    document.getElementById("activeOperators").textContent = formatNumber(operatorSet.size);
+    document.getElementById("servedClients").textContent = formatNumber(clientSet.size);
+  }
+
+  function renderRanking(logs) {
+    const wrap = document.getElementById("rankingWrap");
+
+    if (!logs.length) {
+      wrap.innerHTML = `<div class="empty">Nessun dato disponibile</div>`;
+      return;
+    }
+
+    const grouped = {};
+
+    logs.forEach(item => {
+      const key = item.badge || item.operatore || "Operatore";
+      if (!grouped[key]) {
+        grouped[key] = {
+          operatore: item.operatore || "Operatore",
+          badge: item.badge || "-",
+          punti: 0,
+          operazioni: 0
+        };
+      }
+
+      grouped[key].punti += Number(item.punti || 0);
+      grouped[key].operazioni += 1;
+    });
+
+    const ranking = Object.values(grouped).sort((a, b) => b.punti - a.punti);
+
+    wrap.innerHTML = `
+      <div class="ranking-list">
+        ${ranking.map(item => `
+          <div class="ranking-item">
+            <div class="ranking-left">
+              <p class="ranking-name">${item.operatore}</p>
+              <p class="ranking-meta">Badge: ${item.badge} · Operazioni: ${item.operazioni}</p>
+            </div>
+            <div class="ranking-points">${formatNumber(item.punti)} pt</div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
+
+  function renderTable(logs) {
+    const wrap = document.getElementById("tableWrap");
+
+    if (!logs.length) {
+      wrap.innerHTML = `<div class="empty">Nessun accredito trovato con questi filtri</div>`;
+      return;
+    }
+
+    wrap.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Operatore</th>
+            <th>Badge</th>
+            <th>Cliente</th>
+            <th>Punti</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${logs.map(item => `
+            <tr>
+              <td>${item.data || "-"}</td>
+              <td>${item.operatore || "-"}</td>
+              <td>${item.badge || "-"}</td>
+              <td>${item.cliente || "-"}</td>
+              <td class="points">${formatNumber(Number(item.punti || 0))}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+  }
+
+  function applyFilters() {
+    const filterOperatore = document.getElementById("filterOperatore").value.trim().toLowerCase();
+    const filterCliente = document.getElementById("filterCliente").value.trim().toLowerCase();
+    const filterData = document.getElementById("filterData").value;
+    const filterTipo = document.getElementById("filterTipo").value;
+
+    filteredLogs = allLogs.filter(item => {
+      const operatoreOk = !filterOperatore || String(item.operatore || "").toLowerCase().includes(filterOperatore);
+      const clienteOk = !filterCliente || String(item.cliente || "").toLowerCase().includes(filterCliente);
+
+      let dataOk = true;
+      if (filterData) {
+        const itemDate = parseLocalDate(item.data);
+        if (!itemDate) {
+          dataOk = false;
+        } else {
+          const yyyy = itemDate.getFullYear();
+          const mm = String(itemDate.getMonth() + 1).padStart(2, "0");
+          const dd = String(itemDate.getDate()).padStart(2, "0");
+          const normalized = `${yyyy}-${mm}-${dd}`;
+          dataOk = normalized === filterData;
+        }
+      }
+
+      const punti = Number(item.punti || 0);
+      let tipoOk = true;
+
+      if (filterTipo === "small") tipoOk = punti <= 20;
+      if (filterTipo === "medium") tipoOk = punti >= 21 && punti <= 100;
+      if (filterTipo === "large") tipoOk = punti > 100;
+
+      return operatoreOk && clienteOk && dataOk && tipoOk;
+    });
+
+    renderAll(filteredLogs);
+  }
+
+  function parseLocalDate(text) {
+    if (!text) return null;
+
+    // supporta "dd/mm/yyyy, hh:mm:ss" oppure simili
+    const firstPart = String(text).split(",")[0].trim();
+    const parts = firstPart.split("/");
+
+    if (parts.length !== 3) return null;
+
+    const day = Number(parts[0]);
+    const month = Number(parts[1]) - 1;
+    const year = Number(parts[2]);
+
+    if (!day || month < 0 || !year) return null;
+
+    return new Date(year, month, day);
+  }
+
+  function renderAll(logs) {
+    renderStats(logs);
+    renderRanking(logs);
+    renderTable(logs);
+  }
+
+  renderAll(filteredLogs);
+</script>
+
+</body>
+</html>
