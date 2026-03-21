@@ -274,6 +274,7 @@
         background: linear-gradient(135deg, #69b5af 0%, #47a9b0 100%);
       }
 
+      /* SLIDER */
       body.mobile-preview-mode .mobile-preview-slider {
         width: 100%;
         overflow: hidden;
@@ -281,6 +282,7 @@
 
       body.mobile-preview-mode .mobile-preview-slider-track {
         display: flex;
+        width: 100%;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
@@ -294,11 +296,12 @@
 
       body.mobile-preview-mode .mobile-preview-slider-page {
         min-width: 100%;
+        width: 100%;
         flex: 0 0 100%;
         scroll-snap-align: start;
       }
 
-      body.mobile-preview-mode .mobile-preview-grid {
+      body.mobile-preview-mode .mobile-preview-slider-page .mobile-preview-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 10px;
@@ -308,6 +311,7 @@
         position: relative;
         display: block;
         min-height: 124px;
+        height: 124px;
         border-radius: 20px;
         overflow: hidden;
         text-decoration: none;
@@ -376,7 +380,7 @@
         display: flex;
         justify-content: center;
         gap: 8px;
-        margin-top: 12px;
+        margin-top: 10px;
       }
 
       body.mobile-preview-mode .mobile-preview-dot {
@@ -444,8 +448,13 @@
           font-size: 12px;
         }
 
+        body.mobile-preview-mode .mobile-preview-slider-page .mobile-preview-grid {
+          gap: 8px;
+        }
+
         body.mobile-preview-mode .mobile-preview-card {
           min-height: 118px;
+          height: 118px;
           border-radius: 18px;
         }
 
@@ -564,7 +573,7 @@
         <div class="mobile-preview-slider-page">
           <div class="mobile-preview-grid">
             <a href="punti.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.punti}" alt="Punti">
+              <img src="${CONFIG.extraCardImages.punti}" alt="Punti" onerror="this.onerror=null;this.src='images/promo.jpg';">
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Punti</h3>
                 <p class="mobile-preview-card-text">Saldo e premi</p>
@@ -572,7 +581,7 @@
             </a>
 
             <a href="fortuna.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.fortuna}" alt="Fortuna">
+              <img src="${CONFIG.extraCardImages.fortuna}" alt="Fortuna" onerror="this.onerror=null;this.src='images/promo.jpg';">
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Fortuna</h3>
                 <p class="mobile-preview-card-text">Gioca oggi</p>
@@ -580,7 +589,7 @@
             </a>
 
             <a href="premi.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.premi}" alt="Premi">
+              <img src="${CONFIG.extraCardImages.premi}" alt="Premi" onerror="this.onerror=null;this.src='images/promo.jpg';">
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Premi</h3>
                 <p class="mobile-preview-card-text">Riscatta</p>
@@ -588,7 +597,7 @@
             </a>
 
             <a href="profilo.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.profilo}" alt="Profilo">
+              <img src="${CONFIG.extraCardImages.profilo}" alt="Profilo" onerror="this.onerror=null;this.src='images/promo.jpg';">
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Profilo</h3>
                 <p class="mobile-preview-card-text">I tuoi dati</p>
@@ -677,11 +686,11 @@
     if (isOpen) {
       dot.style.background = "#2aa06f";
       dot.style.boxShadow = "0 0 0 6px rgba(42,160,111,0.10)";
-      text.innerHTML = `Siamo aperti <span class="light">| ${message}</span>`;
+      text.innerHTML = \`Siamo aperti <span class="light">| \${message}</span>\`;
     } else {
       dot.style.background = "#db6b6b";
       dot.style.boxShadow = "0 0 0 6px rgba(219,107,107,0.10)";
-      text.innerHTML = `Siamo chiusi <span class="light">| ${message}</span>`;
+      text.innerHTML = \`Siamo chiusi <span class="light">| \${message}</span>\`;
     }
   })();
 })();
