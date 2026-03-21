@@ -19,6 +19,13 @@
     prenotaLink: "giornate.html",
     miaLink: "assistente.html",
 
+    loginLink: "login.html",
+    registerLink: "register.html",
+    fidelityLink: "fidelity.html",
+    fortunaLink: "fortuna.html",
+    premiLink: "premi.html",
+    profiloLink: "profilo.html",
+
     heroImage: "farmacia3.jpg",
 
     cardImages: {
@@ -399,6 +406,118 @@
         display: none;
       }
 
+      body.mobile-preview-mode .private-access-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(8,20,16,0.64);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 999999;
+      }
+
+      body.mobile-preview-mode .private-access-modal.open {
+        display: flex;
+      }
+
+      body.mobile-preview-mode .private-access-modal-card {
+        position: relative;
+        width: min(100%, 390px);
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 22px 18px 18px;
+        box-shadow: 0 24px 48px rgba(0,0,0,0.18);
+        text-align: center;
+      }
+
+      body.mobile-preview-mode .private-access-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 12px;
+        background: #f2f4f3;
+        color: #27443d;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      body.mobile-preview-mode .private-access-icon {
+        font-size: 3rem;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+
+      body.mobile-preview-mode .private-access-title {
+        margin: 0 0 10px;
+        font-size: 1.45rem;
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+        color: #17352f;
+      }
+
+      body.mobile-preview-mode .private-access-text {
+        margin: 0;
+        color: #6c7c76;
+        font-size: 0.98rem;
+        line-height: 1.55;
+        font-weight: 600;
+      }
+
+      body.mobile-preview-mode .private-access-benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 14px;
+        margin-bottom: 16px;
+      }
+
+      body.mobile-preview-mode .private-access-benefit {
+        background: linear-gradient(180deg, #f7fbf9 0%, #f1f8f4 100%);
+        border: 1px solid #dfece6;
+        border-radius: 16px;
+        padding: 11px 12px;
+        color: #17352f;
+        font-size: 0.92rem;
+        line-height: 1.35;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      body.mobile-preview-mode .private-access-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      body.mobile-preview-mode .private-access-btn {
+        min-height: 50px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      body.mobile-preview-mode .private-access-btn-login {
+        background: linear-gradient(135deg,#1a8b6c 0%, #58a891 100%);
+        color: #fff;
+      }
+
+      body.mobile-preview-mode .private-access-btn-register {
+        background: #eef3f1;
+        color: #17352f;
+        border: 1px solid #dfe8e4;
+      }
+
       @media (max-width: 390px) {
         body.mobile-preview-mode .mobile-preview-root {
           padding-left: 8px;
@@ -586,19 +705,19 @@
 
         <div class="mobile-preview-slider-page">
           <div class="mobile-preview-grid">
-            <a href="fidelity.html" class="mobile-preview-card">
+            <a href="#" class="mobile-preview-card private-card-link" data-private-target="${CONFIG.fidelityLink}">
               <img
                 src="${CONFIG.extraCardImages.punti}"
-                alt="Punti"
+                alt="Fidelity"
                 onerror="this.onerror=null;this.src='images/promo.jpg';"
               >
               <div class="mobile-preview-card-content">
-                <h3 class="mobile-preview-card-title">Punti</h3>
-                <p class="mobile-preview-card-text">Saldo e premi</p>
+                <h3 class="mobile-preview-card-title">Fidelity</h3>
+                <p class="mobile-preview-card-text">Card e vantaggi</p>
               </div>
             </a>
 
-            <a href="fortuna.html" class="mobile-preview-card">
+            <a href="#" class="mobile-preview-card private-card-link" data-private-target="${CONFIG.fortunaLink}">
               <img
                 src="${CONFIG.extraCardImages.fortuna}"
                 alt="Fortuna"
@@ -610,7 +729,7 @@
               </div>
             </a>
 
-            <a href="premi.html" class="mobile-preview-card">
+            <a href="#" class="mobile-preview-card private-card-link" data-private-target="${CONFIG.premiLink}">
               <img
                 src="${CONFIG.extraCardImages.premi}"
                 alt="Premi"
@@ -622,7 +741,7 @@
               </div>
             </a>
 
-            <a href="profilo.html" class="mobile-preview-card">
+            <a href="#" class="mobile-preview-card private-card-link" data-private-target="${CONFIG.profiloLink}">
               <img
                 src="${CONFIG.extraCardImages.profilo}"
                 alt="Profilo"
@@ -643,6 +762,32 @@
         <span class="mobile-preview-dot"></span>
       </div>
     </section>
+
+    <div class="private-access-modal" id="privateAccessModal" aria-hidden="true">
+      <div class="private-access-modal-card">
+        <button class="private-access-close" id="privateAccessClose" aria-label="Chiudi">×</button>
+
+        <div class="private-access-icon">🔒</div>
+
+        <h3 class="private-access-title">Accedi per sbloccare questa area</h3>
+
+        <p class="private-access-text">
+          Registrandoti potrai usare la tua card fidelity, accumulare punti, tentare la fortuna,
+          riscattare premi e gestire il tuo profilo cliente.
+        </p>
+
+        <div class="private-access-benefits">
+          <div class="private-access-benefit">🎁 Premi e vantaggi esclusivi</div>
+          <div class="private-access-benefit">★ Card fidelity personale e punti</div>
+          <div class="private-access-benefit">🍀 Un tentativo al giorno nella Fortuna</div>
+        </div>
+
+        <div class="private-access-actions">
+          <a href="${CONFIG.loginLink}" class="private-access-btn private-access-btn-login">Accedi</a>
+          <a href="${CONFIG.registerLink}" class="private-access-btn private-access-btn-register">Registrati</a>
+        </div>
+      </div>
+    </div>
   `;
 
   document.body.appendChild(root);
@@ -658,6 +803,50 @@
       });
     });
   }
+
+  const privateModal = document.getElementById("privateAccessModal");
+  const privateModalClose = document.getElementById("privateAccessClose");
+  const privateLinks = document.querySelectorAll(".private-card-link");
+
+  function openPrivateModal() {
+    if (!privateModal) return;
+    privateModal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePrivateModal() {
+    if (!privateModal) return;
+    privateModal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  if (privateModalClose) {
+    privateModalClose.addEventListener("click", closePrivateModal);
+  }
+
+  if (privateModal) {
+    privateModal.addEventListener("click", function (e) {
+      if (e.target === privateModal) {
+        closePrivateModal();
+      }
+    });
+  }
+
+  privateLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const isLogged = localStorage.getItem("farmaciaLoggedIn");
+      const user = localStorage.getItem("farmaciaCurrentUser");
+      const target = this.getAttribute("data-private-target");
+
+      if (isLogged === "true" && user && target) {
+        window.location.href = target;
+        return;
+      }
+
+      e.preventDefault();
+      openPrivateModal();
+    });
+  });
 
   (function updateOpeningStatus() {
     const dot = document.getElementById("mobilePreviewStatusDot");
