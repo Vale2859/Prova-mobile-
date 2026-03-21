@@ -77,48 +77,6 @@
       flex:1;
     }
 
-    .points-box{
-      background:linear-gradient(135deg,#0f6f57 0%, #259373 100%);
-      border-radius:22px;
-      box-shadow:0 20px 36px rgba(13,122,95,0.18);
-      color:#fff;
-      padding:14px 16px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin-bottom:16px;
-      width:max-content;
-      min-width:205px;
-      max-width:100%;
-    }
-
-    .points-icon{
-      width:46px;
-      height:46px;
-      border-radius:50%;
-      background:rgba(255,255,255,0.16);
-      display:grid;
-      place-items:center;
-      font-size:1.35rem;
-      flex:0 0 46px;
-    }
-
-    .points-label{
-      margin:0 0 4px;
-      font-size:.92rem;
-      font-weight:700;
-      opacity:.92;
-      line-height:1.15;
-    }
-
-    .points-value{
-      margin:0;
-      font-size:2.2rem;
-      line-height:.9;
-      font-weight:900;
-      letter-spacing:-0.06em;
-    }
-
     .hero{
       text-align:center;
       margin-bottom:12px;
@@ -126,7 +84,7 @@
 
     .hero h2{
       margin:0 0 8px;
-      font-size:2.15rem;
+      font-size:2.1rem;
       line-height:.95;
       font-weight:900;
       letter-spacing:-0.05em;
@@ -495,21 +453,13 @@
   <main class="page">
     <div class="topbar">
       <button class="icon-btn" onclick="history.back()" aria-label="Indietro">←</button>
-      <h1 class="page-title">Tenta la Fortuna!</h1>
+      <h1 class="page-title">Fortuna</h1>
       <button class="icon-btn" aria-label="Notifiche">🔔</button>
     </div>
 
-    <section class="points-box">
-      <div class="points-icon">★</div>
-      <div>
-        <p class="points-label">Punti Disponibili</p>
-        <p class="points-value" id="pointsValue">3.180</p>
-      </div>
-    </section>
-
     <section class="hero">
       <h2>Tenta la Fortuna!</h2>
-      <p>Una sola possibilità al giorno. Gira la ruota e scopri se oggi hai vinto un premio.</p>
+      <p>Hai una sola possibilità al giorno. Gira la ruota e scopri se oggi hai vinto un premio sorpresa.</p>
     </section>
 
     <section class="wheel-card">
@@ -550,7 +500,7 @@
           <div class="timer-icon">⏳</div>
           <div>
             <p class="timer-label">Tempo rimasto al prossimo tentativo</p>
-            <p class="timer-value" id="countdownValue">00:00:00</p>
+            <p class="timer-value" id="countdownValue">Disponibile ora</p>
           </div>
         </div>
         <p class="timer-note">Puoi tentare solo <strong>1 volta al giorno</strong></p>
@@ -562,7 +512,7 @@
       </button>
 
       <p class="small-note">
-        Il premio non viene mostrato prima del giro. Scoprirai l’esito solo alla fine.
+        Il premio resta nascosto fino alla fine del giro. Se oggi non vinci, potrai riprovare domani.
       </p>
     </section>
   </main>
@@ -583,13 +533,12 @@
   </div>
 
   <script>
-    const demoProfileData = {
-      points: 3180
+    const defaultFortunaData = {
+      lastPlayDate: null,
+      lastResult: null
     };
 
-    const fortuneConfig = {
-      storageKey: "farmaciaFortunaLastPlay",
-      resultKey: "farmaciaFortunaLastResult",
+    const fortunaConfig = {
       winChance: 0.32,
       prizes: [
         "Voucher beauty",
@@ -607,24 +556,22 @@
     let isSpinning = false;
     let countdownInterval = null;
 
-    function loadPointsData() {
+    function loadFortunaData() {
       try {
-        const profileSaved = localStorage.getItem("farmaciaProfileData");
-        if (!profileSaved) return demoProfileData;
-        const parsed = JSON.parse(profileSaved);
-        return { ...demoProfileData, ...parsed };
+        const raw = localStorage.getItem("farmaciaFortunaData");
+        if (!raw) return defaultFortunaData;
+        const parsed = JSON.parse(raw);
+        return {
+          lastPlayDate: parsed.lastPlayDate || null,
+          lastResult: parsed.lastResult || null
+        };
       } catch (e) {
-        return demoProfileData;
+        return defaultFortunaData;
       }
     }
 
-    function formatNumber(num) {
-      return new Intl.NumberFormat("it-IT").format(num);
-    }
-
-    function renderPoints() {
-      const data = loadPointsData();
-      document.getElementById("pointsValue").textContent = formatNumber(data.points || 0);
+    function saveFortunaData(data) {
+      localStorage.setItem("farmaciaFortunaData", JSON.stringify(data));
     }
 
     function getTodayKey() {
@@ -649,8 +596,8 @@
     }
 
     function hasPlayedToday() {
-      const lastPlay = localStorage.getItem(fortuneConfig.storageKey);
-      return lastPlay === getTodayKey();
+      const data = loadFortunaData();
+      return data.lastPlayDate === getTodayKey();
     }
 
     function updatePlayState() {
@@ -681,6 +628,7 @@
 
       if (diff <= 0) {
         updatePlayState();
+        countdownEl.textContent = "Disponibile ora";
       }
     }
 
@@ -691,7 +639,8 @@
     }
 
     function chooseResult() {
-      const won = Math.random() < fortuneConfig.winChance;
+      const won = Math.random() < fortunaConfig.winChance;
+
       if (!won) {
         return {
           won: false,
@@ -701,21 +650,13 @@
         };
       }
 
-      const randomPrize = fortuneConfig.prizes[Math.floor(Math.random() * fortuneConfig.prizes.length)];
+      const randomPrize = fortunaConfig.prizes[Math.floor(Math.random() * fortunaConfig.prizes.length)];
       return {
         won: true,
         prize: randomPrize,
         title: "Hai vinto!",
         text: "Complimenti! La ruota si è fermata su un premio sorpresa."
       };
-    }
-
-    function saveTodayResult(result) {
-      localStorage.setItem(fortuneConfig.storageKey, getTodayKey());
-      localStorage.setItem(fortuneConfig.resultKey, JSON.stringify({
-        date: getTodayKey(),
-        result
-      }));
     }
 
     function getRandomSegmentIndex() {
@@ -745,7 +686,11 @@
       wheel.style.transform = `rotate(${finalRotation}deg)`;
       wheelRotation = finalRotation % 360;
 
-      saveTodayResult(result);
+      saveFortunaData({
+        lastPlayDate: getTodayKey(),
+        lastResult: result
+      });
+
       updatePlayState();
       updateCountdown();
 
@@ -788,7 +733,6 @@
       if (e.target === this) closeResultModal();
     });
 
-    renderPoints();
     updatePlayState();
     startCountdown();
   </script>
