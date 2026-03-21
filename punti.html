@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Punti | Farmacia Montesano</title>
+  <title>Fidelity | Farmacia Montesano</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -16,8 +16,11 @@
       --green:#0d7a5f;
       --green-2:#4fa38f;
       --green-3:#dff2eb;
+      --green-4:#eef8f4;
       --line:#e5eeea;
       --shadow:0 16px 34px rgba(16,50,42,0.08);
+      --gold:#d7b056;
+      --gold-dark:#8e6b1f;
       --radius:24px;
     }
 
@@ -32,7 +35,7 @@
     }
 
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
+    button{font-family:inherit}
 
     .page{
       width:min(100%, 430px);
@@ -58,6 +61,7 @@
       font-size:22px;
       color:var(--text);
       cursor:pointer;
+      flex:0 0 44px;
     }
 
     .title-wrap{
@@ -80,107 +84,198 @@
       font-weight:600;
     }
 
-    .hero{
+    .fidelity-card{
       position:relative;
       overflow:hidden;
       border-radius:30px;
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 35%),
-        linear-gradient(135deg, #197a62 0%, #58ad9a 100%);
+        radial-gradient(circle at 80% 18%, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 34%),
+        linear-gradient(135deg, #0f6f57 0%, #198266 52%, #58a895 100%);
       color:#fff;
-      box-shadow:0 22px 40px rgba(13,122,95,0.18);
-      padding:20px 18px 18px;
+      box-shadow:0 24px 40px rgba(13,122,95,0.18);
+      padding:18px;
       margin-bottom:16px;
     }
 
-    .hero::before{
+    .fidelity-card::before{
       content:"";
       position:absolute;
-      right:-20px;
-      top:-14px;
-      width:150px;
-      height:150px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 72%);
+      inset:auto -40px -26px auto;
+      width:220px;
+      height:160px;
+      background:radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
       pointer-events:none;
     }
 
-    .hero-top{
+    .card-head{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap:12px;
-      margin-bottom:18px;
-    }
-
-    .hero-label{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:30px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.16);
-      font-size:.78rem;
-      font-weight:800;
-      letter-spacing:.04em;
-    }
-
-    .level-badge{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:30px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.16);
-      font-size:.82rem;
-      font-weight:800;
-    }
-
-    .points-big{
-      font-size:3.8rem;
-      line-height:.9;
-      font-weight:900;
-      letter-spacing:-0.08em;
-      margin:0;
-    }
-
-    .points-text{
-      margin:8px 0 0;
-      font-size:1.15rem;
-      font-weight:700;
-      opacity:.96;
-    }
-
-    .hero-bottom{
-      display:grid;
-      grid-template-columns:1fr 1fr;
       gap:10px;
-      margin-top:16px;
+      margin-bottom:14px;
+      position:relative;
+      z-index:2;
     }
 
-    .mini-stat{
+    .brand-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-icon{
+      width:52px;
+      height:52px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.14);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      flex:0 0 52px;
+    }
+
+    .brand-icon img{
+      width:34px;
+      height:34px;
+      object-fit:contain;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-title{
+      margin:0;
+      font-size:1.2rem;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-0.03em;
+    }
+
+    .brand-subtitle{
+      margin:5px 0 0;
+      font-size:.92rem;
+      line-height:1.2;
+      color:rgba(255,255,255,0.92);
+      font-weight:500;
+    }
+
+    .gold-badge{
+      flex:0 0 auto;
+      min-width:86px;
+      min-height:86px;
+      border-radius:50%;
+      background:
+        radial-gradient(circle at 30% 25%, #fff1a8 0%, #efd37a 32%, #d3a53a 70%, #b98921 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      box-shadow:0 10px 18px rgba(0,0,0,0.12);
+      color:#4d3602;
+      padding:10px;
+      font-weight:900;
+      line-height:1.05;
+      border:3px solid rgba(255,255,255,0.35);
+    }
+
+    .gold-badge span{
+      display:block;
+      font-size:.72rem;
+      letter-spacing:.02em;
+    }
+
+    .gold-badge strong{
+      display:block;
+      margin-top:4px;
+      font-size:1.08rem;
+    }
+
+    .barcode-box{
+      position:relative;
+      z-index:2;
+      background:#fff;
+      border-radius:26px;
+      padding:16px 16px 14px;
+      box-shadow:0 16px 30px rgba(0,0,0,0.10);
+      margin-bottom:14px;
+    }
+
+    .barcode-label{
+      margin:0 0 8px;
+      text-align:center;
+      color:var(--green);
+      font-size:1rem;
+      font-weight:900;
+      letter-spacing:.03em;
+    }
+
+    .barcode-svg{
+      display:block;
+      width:100%;
+      height:92px;
+      background:#fff;
+      border-radius:16px;
+    }
+
+    .client-code{
+      margin:10px 0 6px;
+      text-align:center;
+      color:#1a2f5d;
+      font-size:2rem;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-0.04em;
+    }
+
+    .barcode-note{
+      margin:0;
+      text-align:center;
+      color:#687973;
+      font-size:.95rem;
+      line-height:1.35;
+      font-weight:500;
+    }
+
+    .card-stats{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:10px;
+    }
+
+    .stat-box{
       background:rgba(255,255,255,0.12);
       border:1px solid rgba(255,255,255,0.18);
-      border-radius:18px;
-      padding:12px;
+      border-radius:20px;
+      padding:14px;
       backdrop-filter:blur(6px);
       -webkit-backdrop-filter:blur(6px);
     }
 
-    .mini-stat-label{
-      margin:0 0 4px;
-      font-size:.78rem;
+    .stat-label{
+      margin:0 0 6px;
+      font-size:.82rem;
       font-weight:700;
       opacity:.88;
+      line-height:1.2;
     }
 
-    .mini-stat-value{
+    .stat-value-big{
       margin:0;
-      font-size:1.02rem;
+      font-size:2.6rem;
+      line-height:.9;
       font-weight:900;
+      letter-spacing:-0.08em;
+    }
+
+    .stat-value{
+      margin:0;
+      font-size:1.05rem;
       line-height:1.15;
+      font-weight:900;
     }
 
     .section{
@@ -376,9 +471,90 @@
       text-align:center;
     }
 
-    @media (max-width: 390px){
+    .full-code-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(8,20,16,0.72);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+
+    .full-code-overlay.open{
+      display:flex;
+    }
+
+    .full-code-card{
+      width:min(100%, 420px);
+      background:#fff;
+      border-radius:28px;
+      padding:20px;
+      box-shadow:0 24px 46px rgba(0,0,0,0.18);
+    }
+
+    .full-code-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .full-code-title{
+      margin:0;
+      font-size:1.5rem;
+      line-height:1;
+      font-weight:900;
+    }
+
+    .close-btn{
+      width:40px;
+      height:40px;
+      border:none;
+      border-radius:12px;
+      background:#f2f4f3;
+      cursor:pointer;
+      font-size:22px;
+    }
+
+    .full-code-label{
+      margin:0 0 10px;
+      color:var(--green);
+      text-align:center;
+      font-size:1rem;
+      font-weight:900;
+    }
+
+    .full-code-id{
+      margin:14px 0 10px;
+      text-align:center;
+      font-size:2rem;
+      font-weight:900;
+      letter-spacing:-0.05em;
+      color:#1a2f5d;
+    }
+
+    .full-code-note{
+      margin:0;
+      text-align:center;
+      color:var(--text-soft);
+      font-size:.95rem;
+      line-height:1.35;
+      font-weight:600;
+    }
+
+    @media (max-width:390px){
       .page{padding:12px 12px 24px}
-      .points-big{font-size:3.3rem}
+      .client-code{font-size:1.75rem}
+      .gold-badge{
+        min-width:80px;
+        min-height:80px;
+      }
+      .stat-value-big{font-size:2.3rem}
       .section-title{font-size:1.42rem}
       .info-card,.action-card{min-height:116px}
     }
@@ -389,28 +565,50 @@
     <div class="topbar">
       <button class="back-btn" onclick="history.back()" aria-label="Indietro">←</button>
       <div class="title-wrap">
-        <h1 class="page-title">Punti</h1>
-        <p class="page-subtitle">Il tuo saldo e i vantaggi della farmacia</p>
+        <h1 class="page-title">Fidelity</h1>
+        <p class="page-subtitle">La tua card personale della farmacia</p>
       </div>
     </div>
 
-    <section class="hero">
-      <div class="hero-top">
-        <span class="hero-label">Carta fedeltà</span>
-        <span class="level-badge" id="customerLevel">Livello Gold</span>
+    <section class="fidelity-card">
+      <div class="card-head">
+        <div class="brand-wrap">
+          <div class="brand-icon">
+            <img src="logo.png" alt="Logo Farmacia Montesano" onerror="this.style.display='none'">
+          </div>
+          <div class="brand-text">
+            <h2 class="brand-title">Tessera Fedeltà</h2>
+            <p class="brand-subtitle">Farmacia Montesano</p>
+          </div>
+        </div>
+
+        <div class="gold-badge">
+          <div>
+            <span>LIVELLO</span>
+            <strong id="levelBadge">GOLD</strong>
+          </div>
+        </div>
       </div>
 
-      <h2 class="points-big" id="pointsValue">3.180</h2>
-      <p class="points-text">Punti disponibili</p>
+      <div class="barcode-box">
+        <p class="barcode-label">CODICE CLIENTE</p>
+        <svg id="barcodeSvg" class="barcode-svg" viewBox="0 0 360 92" preserveAspectRatio="none"></svg>
+        <p class="client-code" id="clientCodeText">FM10248375</p>
+        <p class="barcode-note">Mostra questo codice alla cassa per accumulare punti</p>
+      </div>
 
-      <div class="hero-bottom">
-        <div class="mini-stat">
-          <p class="mini-stat-label">Prossimo premio</p>
-          <p class="mini-stat-value" id="nextReward">Voucher beauty</p>
+      <div class="card-stats">
+        <div class="stat-box">
+          <p class="stat-label">Punti disponibili</p>
+          <p class="stat-value-big" id="pointsValue">3.180</p>
         </div>
-        <div class="mini-stat">
-          <p class="mini-stat-label">Ti mancano</p>
-          <p class="mini-stat-value" id="pointsMissing">120 punti</p>
+
+        <div class="stat-box">
+          <p class="stat-label">Prossimo premio</p>
+          <p class="stat-value" id="nextReward">Voucher beauty</p>
+          <div style="height:10px"></div>
+          <p class="stat-label">Ti mancano</p>
+          <p class="stat-value" id="pointsMissing">120 punti</p>
         </div>
       </div>
     </section>
@@ -442,7 +640,7 @@
 
     <section class="section">
       <div class="section-head">
-        <h3 class="section-title">Usa i tuoi punti</h3>
+        <h3 class="section-title">Usa la tua fidelity</h3>
       </div>
 
       <div class="action-grid">
@@ -454,10 +652,10 @@
           <div class="action-emoji">🎁</div>
         </a>
 
-        <a href="premi.html" class="action-card">
+        <a href="profilo.html" class="action-card">
           <div>
-            <h4 class="action-title">Usa i punti per un voucher</h4>
-            <p class="action-sub">Trasforma i punti in vantaggi reali della farmacia.</p>
+            <h4 class="action-title">Apri la scheda cliente</h4>
+            <p class="action-sub">Visualizza i tuoi dati e mostra il codice in farmacia.</p>
           </div>
           <div class="action-emoji">💚</div>
         </a>
@@ -496,20 +694,35 @@
       </div>
     </section>
 
-    <button class="big-cta" onclick="goToHowToEarn()">
-      <span>✓</span>
-      <span>Guarda come guadagnare punti</span>
+    <button class="big-cta" onclick="openCodeOverlay()">
+      <span>▦</span>
+      <span>Mostra codice in cassa</span>
     </button>
 
     <p class="small-note">
-      I premi e i bonus possono cambiare in base agli eventi, alle promozioni e alle iniziative della Farmacia Montesano.
+      I vantaggi fidelity, i bonus e i premi possono cambiare in base alle iniziative della Farmacia Montesano.
     </p>
   </main>
 
+  <div class="full-code-overlay" id="fullCodeOverlay">
+    <div class="full-code-card">
+      <div class="full-code-head">
+        <h3 class="full-code-title">Mostra in cassa</h3>
+        <button class="close-btn" onclick="closeCodeOverlay()">×</button>
+      </div>
+
+      <p class="full-code-label">CODICE CLIENTE</p>
+      <svg id="barcodeSvgLarge" class="barcode-svg" viewBox="0 0 360 92" preserveAspectRatio="none"></svg>
+      <p class="full-code-id" id="clientCodeTextLarge">FM10248375</p>
+      <p class="full-code-note">Mostra questo codice al personale della farmacia per il caricamento dei punti.</p>
+    </div>
+  </div>
+
   <script>
-    const demoData = {
+    const demoFidelityData = {
+      clientCode: "FM10248375",
       points: 3180,
-      level: "Livello Gold",
+      level: "Gold",
       nextReward: "Voucher beauty",
       missing: 120,
       activities: [
@@ -527,24 +740,90 @@
       return new Intl.NumberFormat("it-IT").format(num);
     }
 
-    function loadPointsData() {
+    function loadFidelityData() {
       try {
-        const saved = localStorage.getItem("farmaciaPuntiData");
-        if (!saved) return demoData;
-        const parsed = JSON.parse(saved);
-        return { ...demoData, ...parsed };
+        const savedProfile = localStorage.getItem("farmaciaProfileData");
+        const savedPoints = localStorage.getItem("farmaciaPuntiData");
+
+        const profileData = savedProfile ? JSON.parse(savedProfile) : {};
+        const pointsData = savedPoints ? JSON.parse(savedPoints) : {};
+
+        return {
+          ...demoFidelityData,
+          ...profileData,
+          ...pointsData,
+          clientCode: profileData.clientCode || demoFidelityData.clientCode,
+          points: profileData.points ?? pointsData.points ?? demoFidelityData.points,
+          level: profileData.level || pointsData.level || demoFidelityData.level,
+          nextReward: pointsData.nextReward || demoFidelityData.nextReward,
+          missing: pointsData.missing ?? demoFidelityData.missing,
+          activities: pointsData.activities || demoFidelityData.activities,
+          received: pointsData.received || demoFidelityData.received
+        };
       } catch (e) {
-        return demoData;
+        return demoFidelityData;
       }
     }
 
-    function renderPage() {
-      const data = loadPointsData();
+    function renderBarcode(svgId, code) {
+      const svg = document.getElementById(svgId);
+      if (!svg) return;
 
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      const width = 360;
+      const height = 92;
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+      const bg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+      bg.setAttribute("x", "0");
+      bg.setAttribute("y", "0");
+      bg.setAttribute("width", width);
+      bg.setAttribute("height", height);
+      bg.setAttribute("fill", "#ffffff");
+      svg.appendChild(bg);
+
+      let x = 12;
+      const top = 10;
+      const barHeight = 60;
+
+      const pattern = [];
+      for (let i = 0; i < code.length; i++) {
+        const charCode = code.charCodeAt(i);
+        const bars = (charCode % 7) + 4;
+        for (let j = 0; j < bars; j++) {
+          pattern.push(((charCode + j) % 3) + 1);
+          pattern.push(((charCode + j + 2) % 2) + 1);
+        }
+      }
+
+      pattern.forEach((w, index) => {
+        if (x >= width - 14) return;
+        if (index % 2 === 0) {
+          const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rect.setAttribute("x", x);
+          rect.setAttribute("y", top);
+          rect.setAttribute("width", w);
+          rect.setAttribute("height", barHeight);
+          rect.setAttribute("fill", "#000");
+          svg.appendChild(rect);
+        }
+        x += w;
+      });
+    }
+
+    function renderPage() {
+      const data = loadFidelityData();
+
+      document.getElementById("clientCodeText").textContent = data.clientCode;
+      document.getElementById("clientCodeTextLarge").textContent = data.clientCode;
       document.getElementById("pointsValue").textContent = formatPoints(data.points || 0);
-      document.getElementById("customerLevel").textContent = data.level || "Livello Cliente";
       document.getElementById("nextReward").textContent = data.nextReward || "Premio disponibile";
-      document.getElementById("pointsMissing").textContent = `${data.missing || 0} punti`;
+      document.getElementById("pointsMissing").textContent = `${formatPoints(data.missing || 0)} punti`;
+      document.getElementById("levelBadge").textContent = String(data.level || "Gold").toUpperCase();
+
+      renderBarcode("barcodeSvg", data.clientCode);
+      renderBarcode("barcodeSvgLarge", data.clientCode);
 
       const activityCards = document.getElementById("activityCards");
       if (Array.isArray(data.activities) && data.activities.length) {
@@ -573,9 +852,19 @@
       }
     }
 
-    function goToHowToEarn() {
-      alert("Qui poi collegheremo la pagina con le regole per guadagnare punti.");
+    function openCodeOverlay() {
+      document.getElementById("fullCodeOverlay").classList.add("open");
+      document.body.style.overflow = "hidden";
     }
+
+    function closeCodeOverlay() {
+      document.getElementById("fullCodeOverlay").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("fullCodeOverlay").addEventListener("click", function(e){
+      if (e.target === this) closeCodeOverlay();
+    });
 
     renderPage();
   </script>
