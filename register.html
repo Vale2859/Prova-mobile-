@@ -355,6 +355,13 @@
   </main>
 
   <script>
+    const isLogged = localStorage.getItem("farmaciaLoggedIn");
+    const user = localStorage.getItem("farmaciaCurrentUser");
+
+    if (isLogged === "true" && user) {
+      window.location.href = "index.html";
+    }
+
     function showError(message) {
       const errorBox = document.getElementById("errorBox");
       const successBox = document.getElementById("successBox");
@@ -374,6 +381,18 @@
     function generateClientId() {
       const random = Math.floor(10000000 + Math.random() * 90000000);
       return `FM${random}`;
+    }
+
+    function getInitialLevel(points) {
+      if (points >= 3000) return "Diamond";
+      if (points >= 1000) return "Gold";
+      return "Bronze";
+    }
+
+    function getInitialMissing(points) {
+      if (points < 1000) return 1000 - points;
+      if (points < 3000) return 3000 - points;
+      return 0;
     }
 
     document.getElementById("registerForm").addEventListener("submit", function(e) {
@@ -410,6 +429,9 @@
 
       const clientId = generateClientId();
       const now = new Date().toISOString();
+      const initialPoints = 0;
+      const initialLevel = getInitialLevel(initialPoints);
+      const initialMissing = getInitialMissing(initialPoints);
 
       const profileData = {
         name,
@@ -418,7 +440,8 @@
         phone,
         clientId,
         clientCode: clientId,
-        level: "Gold",
+        level: initialLevel,
+        points: initialPoints,
         createdAt: now
       };
 
@@ -436,20 +459,67 @@
       };
 
       const pointsData = {
-        points: 0,
-        level: "Gold",
-        nextReward: "Voucher beauty",
-        missing: 500,
+        points: initialPoints,
+        level: initialLevel,
+        nextReward: "Primo premio disponibile",
+        missing: initialMissing,
         activities: [],
+        operations: [],
         received: []
       };
 
-     localStorage.setItem("farmaciaProfileData", JSON.stringify(profileData));
-localStorage.setItem("farmaciaCurrentUser", JSON.stringify(currentUser));
-localStorage.setItem("farmaciaLoggedIn", "true");
-localStorage.setItem("farmaciaPrivacyData", JSON.stringify(privacyData));
-localStorage.setItem("farmaciaPuntiData", JSON.stringify(pointsData));
-localStorage.setItem("farmaciaPasswordDemo", password);
+      const rewardsData = {
+        points: initialPoints,
+        redeemed: [],
+        rewards: [
+          {
+            id: 1,
+            category: "voucher",
+            title: "Voucher Beauty Spa",
+            pointsRequired: 3300,
+            image: "images/premio-voucher.jpg",
+            fallback: "images/beauty.jpg"
+          },
+          {
+            id: 2,
+            category: "beauty",
+            title: "Omaggio prodotti dermocosmesi",
+            pointsRequired: 4500,
+            image: "images/premio-dermocosmesi.jpg",
+            fallback: "images/premi.jpg"
+          },
+          {
+            id: 3,
+            category: "beauty",
+            title: "Set doccia e profumo",
+            pointsRequired: 5000,
+            image: "images/premio-buono.jpg",
+            fallback: "images/premi.jpg"
+          },
+          {
+            id: 4,
+            category: "benessere",
+            title: "Tisana benessere bio",
+            pointsRequired: 6000,
+            image: "images/premio-tisana.jpg",
+            fallback: "images/premi.jpg"
+          }
+        ]
+      };
+
+      const fortunaData = {
+        lastPlayDate: null,
+        lastResult: null
+      };
+
+      localStorage.setItem("farmaciaProfileData", JSON.stringify(profileData));
+      localStorage.setItem("farmaciaCurrentUser", JSON.stringify(currentUser));
+      localStorage.setItem("farmaciaLoggedIn", "true");
+      localStorage.setItem("farmaciaPrivacyData", JSON.stringify(privacyData));
+      localStorage.setItem("farmaciaPuntiData", JSON.stringify(pointsData));
+      localStorage.setItem("farmaciaRewardsData", JSON.stringify(rewardsData));
+      localStorage.setItem("farmaciaFortunaData", JSON.stringify(fortunaData));
+      localStorage.setItem("farmaciaPasswordDemo", password);
 
       showSuccess("Registrazione completata con successo. Verrai reindirizzato tra pochi secondi.");
 
