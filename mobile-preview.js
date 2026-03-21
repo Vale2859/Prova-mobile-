@@ -1,4 +1,10 @@
 (function () {
+  // 🔐 CONTROLLO LOGIN
+const isLogged = localStorage.getItem("farmaciaLoggedIn");
+
+if (isLogged !== "true") {
+  window.location.href = "login.html";
+}
   const isMobile = window.innerWidth <= 768;
   if (!isMobile) return;
 
