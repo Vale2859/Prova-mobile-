@@ -83,6 +83,7 @@
       font-size:.95rem;
       color:var(--text-soft);
       font-weight:600;
+      line-height:1.35;
     }
 
     .hero-card{
@@ -342,8 +343,8 @@
       <div class="hero-top">
         <div class="avatar">👤</div>
         <div>
-          <h2 class="hero-name" id="profileName">Mario Rossi</h2>
-          <p class="hero-mail" id="profileEmail">mario.rossi@email.com</p>
+          <h2 class="hero-name" id="profileName">Cliente</h2>
+          <p class="hero-mail" id="profileEmail">email@email.com</p>
         </div>
       </div>
     </section>
@@ -355,31 +356,31 @@
         <div class="data-row">
           <div class="data-icon">👤</div>
           <div class="data-label">Nome</div>
-          <div class="data-value" id="nameValue">Mario</div>
+          <div class="data-value" id="nameValue">-</div>
         </div>
 
         <div class="data-row">
           <div class="data-icon">👥</div>
           <div class="data-label">Cognome</div>
-          <div class="data-value" id="surnameValue">Rossi</div>
+          <div class="data-value" id="surnameValue">-</div>
         </div>
 
         <div class="data-row">
           <div class="data-icon">✉️</div>
           <div class="data-label">Email</div>
-          <div class="data-value" id="emailValue">mario.rossi@email.com</div>
+          <div class="data-value" id="emailValue">-</div>
         </div>
 
         <div class="data-row">
           <div class="data-icon">📞</div>
           <div class="data-label">Telefono</div>
-          <div class="data-value" id="phoneValue">+39 333 1234567</div>
+          <div class="data-value" id="phoneValue">-</div>
         </div>
 
         <div class="data-row">
           <div class="data-icon">🪪</div>
           <div class="data-label">ID cliente</div>
-          <div class="data-value" id="clientIdValue">FM10248375</div>
+          <div class="data-value" id="clientIdValue">-</div>
         </div>
       </div>
     </section>
@@ -397,7 +398,7 @@
     </div>
 
     <p class="note">
-      La cancellazione dell’account rimuoverà i dati salvati localmente sul dispositivo. Quando collegheremo Firebase, potremo eliminare anche l’account reale dal sistema.
+      La cancellazione dell’account rimuoverà i dati salvati localmente su questo dispositivo. Quando collegheremo Firebase, qui potremo eliminare anche l’account reale dal sistema.
     </p>
   </main>
 
@@ -418,7 +419,7 @@
     <div class="modal-card">
       <h3 class="modal-title">Eliminare l’account?</h3>
       <p class="modal-text">
-        Questa azione rimuoverà i dati salvati nel browser di questo dispositivo. Quando useremo Firebase, qui collegheremo anche la cancellazione definitiva dell’account.
+        Questa azione rimuoverà i dati salvati nel browser di questo dispositivo, inclusi profilo, fidelity, premi e fortuna.
       </p>
       <div class="modal-actions">
         <button class="modal-btn secondary" onclick="closeDeleteModal()">Annulla</button>
@@ -428,42 +429,48 @@
   </div>
 
   <script>
-    const demoProfileData = {
-      name: "Mario",
-      surname: "Rossi",
-      email: "mario.rossi@email.com",
-      phone: "+39 333 1234567",
-      clientId: "FM10248375"
+    const emptyProfileData = {
+      name: "",
+      surname: "",
+      email: "",
+      phone: "",
+      clientId: "",
+      clientCode: ""
     };
 
     function loadProfileData() {
       try {
-        const saved = localStorage.getItem("farmaciaProfileData");
-        if (!saved) return demoProfileData;
-        const parsed = JSON.parse(saved);
+        const raw = localStorage.getItem("farmaciaProfileData");
+        if (!raw) return emptyProfileData;
+
+        const parsed = JSON.parse(raw);
+
         return {
-          name: parsed.name || demoProfileData.name,
-          surname: parsed.surname || demoProfileData.surname,
-          email: parsed.email || demoProfileData.email,
-          phone: parsed.phone || demoProfileData.phone,
-          clientId: parsed.clientId || parsed.clientCode || demoProfileData.clientId
+          name: parsed.name || "",
+          surname: parsed.surname || "",
+          email: parsed.email || "",
+          phone: parsed.phone || "",
+          clientId: parsed.clientId || parsed.clientCode || "",
+          clientCode: parsed.clientCode || parsed.clientId || ""
         };
       } catch (e) {
-        return demoProfileData;
+        return emptyProfileData;
       }
     }
 
     function renderProfile() {
       const data = loadProfileData();
 
-      document.getElementById("profileName").textContent = `${data.name} ${data.surname}`;
-      document.getElementById("profileEmail").textContent = data.email;
+      const fullName = [data.name, data.surname].filter(Boolean).join(" ").trim() || "Cliente";
 
-      document.getElementById("nameValue").textContent = data.name;
-      document.getElementById("surnameValue").textContent = data.surname;
-      document.getElementById("emailValue").textContent = data.email;
-      document.getElementById("phoneValue").textContent = data.phone;
-      document.getElementById("clientIdValue").textContent = data.clientId;
+      document.getElementById("profileName").textContent = fullName;
+      document.getElementById("profileEmail").textContent = data.email || "Nessuna email disponibile";
+
+      document.getElementById("nameValue").textContent = data.name || "-";
+      document.getElementById("surnameValue").textContent = data.surname || "-";
+      document.getElementById("emailValue").textContent = data.email || "-";
+      document.getElementById("phoneValue").textContent = data.phone || "-";
+      document.getElementById("clientIdValue").textContent = data.clientId || "-";
     }
 
     function openLogoutModal() {
@@ -490,7 +497,6 @@
       localStorage.removeItem("farmaciaCurrentUser");
       localStorage.removeItem("farmaciaLoggedIn");
 
-      alert("Logout effettuato.");
       window.location.href = "index.html";
     }
 
@@ -500,10 +506,10 @@
       localStorage.removeItem("farmaciaProfileData");
       localStorage.removeItem("farmaciaPuntiData");
       localStorage.removeItem("farmaciaRewardsData");
-      localStorage.removeItem("farmaciaFortunaLastPlay");
-      localStorage.removeItem("farmaciaFortunaLastResult");
+      localStorage.removeItem("farmaciaFortunaData");
+      localStorage.removeItem("farmaciaPrivacyData");
+      localStorage.removeItem("farmaciaPasswordDemo");
 
-      alert("Account eliminato da questo dispositivo.");
       window.location.href = "index.html";
     }
 
