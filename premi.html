@@ -20,11 +20,12 @@
       --green-4:#eef8f4;
       --line:#e4ece8;
       --shadow:0 16px 34px rgba(16,50,42,0.08);
-      --radius:24px;
+      --danger:#c94646;
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+
     body{
       font-family:"Inter",sans-serif;
       background:
@@ -118,6 +119,62 @@
       letter-spacing:-0.06em;
     }
 
+    .intro-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:14px;
+    }
+
+    .intro-title{
+      margin:0 0 8px;
+      font-size:1.18rem;
+      line-height:1.05;
+      font-weight:900;
+      letter-spacing:-0.03em;
+    }
+
+    .intro-text{
+      margin:0;
+      color:var(--text-soft);
+      font-size:.96rem;
+      line-height:1.55;
+      font-weight:600;
+    }
+
+    .filter-bar{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding-bottom:4px;
+      margin-bottom:14px;
+      scrollbar-width:none;
+    }
+
+    .filter-bar::-webkit-scrollbar{display:none}
+
+    .filter-pill{
+      min-height:38px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      font-size:.92rem;
+      font-weight:800;
+      color:var(--text);
+      white-space:nowrap;
+      cursor:pointer;
+    }
+
+    .filter-pill.active{
+      background:var(--green);
+      color:#fff;
+      border-color:transparent;
+    }
+
     .reward-list{
       display:flex;
       flex-direction:column;
@@ -139,9 +196,8 @@
     }
 
     .reward-media{
-      position:relative;
-      min-height:100%;
       background:#eef3f1;
+      min-height:100%;
     }
 
     .reward-media img{
@@ -161,7 +217,7 @@
 
     .reward-name{
       margin:0;
-      font-size:1.18rem;
+      font-size:1.16rem;
       line-height:1.08;
       font-weight:900;
       letter-spacing:-0.03em;
@@ -219,35 +275,97 @@
       color:var(--green);
     }
 
-    .filter-bar{
-      display:flex;
-      gap:8px;
-      overflow-x:auto;
-      padding-bottom:4px;
-      margin-bottom:14px;
-      scrollbar-width:none;
+    .section{
+      margin-top:18px;
     }
 
-    .filter-bar::-webkit-scrollbar{display:none}
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
 
-    .filter-pill{
-      min-height:38px;
-      padding:8px 14px;
-      border-radius:999px;
+    .section-title{
+      margin:0;
+      font-size:1.42rem;
+      line-height:1.02;
+      font-weight:900;
+      letter-spacing:-0.04em;
+    }
+
+    .redeemed-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .redeemed-item{
       background:#fff;
       border:1px solid var(--line);
+      border-radius:20px;
       box-shadow:var(--shadow);
-      font-size:.92rem;
-      font-weight:800;
-      color:var(--text);
-      white-space:nowrap;
-      cursor:pointer;
+      padding:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
 
-    .filter-pill.active{
-      background:var(--green);
-      color:#fff;
-      border-color:transparent;
+    .redeemed-icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:var(--green-3);
+      display:grid;
+      place-items:center;
+      font-size:1.3rem;
+      flex:0 0 48px;
+    }
+
+    .redeemed-text{
+      min-width:0;
+      flex:1;
+    }
+
+    .redeemed-name{
+      margin:0 0 4px;
+      font-size:1rem;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .redeemed-meta{
+      margin:0;
+      font-size:.88rem;
+      color:var(--text-soft);
+      font-weight:600;
+      line-height:1.35;
+    }
+
+    .empty-card{
+      background:linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
+      border:1px dashed #d8e4de;
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:18px 16px;
+      text-align:center;
+    }
+
+    .empty-card-title{
+      margin:0 0 8px;
+      font-size:1.08rem;
+      line-height:1.1;
+      font-weight:900;
+      color:var(--text);
+    }
+
+    .empty-card-text{
+      margin:0;
+      color:var(--text-soft);
+      font-size:.94rem;
+      line-height:1.5;
+      font-weight:600;
     }
 
     .note{
@@ -349,7 +467,7 @@
         grid-template-columns:110px 1fr;
         min-height:162px;
       }
-      .reward-name{font-size:1.1rem}
+      .reward-name{font-size:1.08rem}
     }
   </style>
 </head>
@@ -357,7 +475,7 @@
   <main class="page">
     <div class="topbar">
       <button class="icon-btn" onclick="history.back()" aria-label="Indietro">←</button>
-      <h1 class="page-title">Premi del Programma</h1>
+      <h1 class="page-title">Premi</h1>
       <button class="icon-btn" aria-label="Notifiche">🔔</button>
     </div>
 
@@ -365,8 +483,15 @@
       <div class="points-icon">★</div>
       <div>
         <p class="points-label">Punti Disponibili</p>
-        <p class="points-value" id="pointsValue">3.180</p>
+        <p class="points-value" id="pointsValue">0</p>
       </div>
+    </section>
+
+    <section class="intro-card">
+      <h2 class="intro-title">Riscatta i tuoi vantaggi</h2>
+      <p class="intro-text">
+        Accumula punti con la tua fidelity e sblocca premi, voucher, prodotti beauty e vantaggi esclusivi della farmacia.
+      </p>
     </section>
 
     <div class="filter-bar">
@@ -377,6 +502,13 @@
     </div>
 
     <section class="reward-list" id="rewardList"></section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3 class="section-title">Premi riscattati</h3>
+      </div>
+      <div id="redeemedWrap"></div>
+    </section>
 
     <p class="note">
       I premi possono cambiare in base alla disponibilità, alle promozioni e alle iniziative della Farmacia Montesano.
@@ -400,8 +532,9 @@
   </div>
 
   <script>
-    const demoRewardsData = {
-      points: 3180,
+    const fallbackRewardsData = {
+      points: 0,
+      redeemed: [],
       rewards: [
         {
           id: 1,
@@ -421,8 +554,8 @@
         },
         {
           id: 3,
-          category: "voucher",
-          title: "Buono sconto farmacia €20",
+          category: "beauty",
+          title: "Set doccia e profumo",
           pointsRequired: 5000,
           image: "images/premio-buono.jpg",
           fallback: "images/premi.jpg"
@@ -438,25 +571,28 @@
       ]
     };
 
-    function loadRewardsData() {
-      try {
-        const savedRewards = localStorage.getItem("farmaciaRewardsData");
-        const savedProfile = localStorage.getItem("farmaciaProfileData");
-
-        let rewardsData = savedRewards ? JSON.parse(savedRewards) : {};
-        let profileData = savedProfile ? JSON.parse(savedProfile) : {};
-
-        return {
-          points: profileData.points ?? rewardsData.points ?? demoRewardsData.points,
-          rewards: rewardsData.rewards ?? demoRewardsData.rewards
-        };
-      } catch (e) {
-        return demoRewardsData;
-      }
-    }
-
     function formatNumber(num) {
       return new Intl.NumberFormat("it-IT").format(num);
+    }
+
+    function loadRewardsData() {
+      try {
+        const rewardsRaw = localStorage.getItem("farmaciaRewardsData");
+        const profileRaw = localStorage.getItem("farmaciaProfileData");
+        const pointsRaw = localStorage.getItem("farmaciaPuntiData");
+
+        const rewardsData = rewardsRaw ? JSON.parse(rewardsRaw) : {};
+        const profileData = profileRaw ? JSON.parse(profileRaw) : {};
+        const pointsData = pointsRaw ? JSON.parse(pointsRaw) : {};
+
+        return {
+          points: Number(profileData.points ?? pointsData.points ?? rewardsData.points ?? 0),
+          rewards: Array.isArray(rewardsData.rewards) ? rewardsData.rewards : fallbackRewardsData.rewards,
+          redeemed: Array.isArray(rewardsData.redeemed) ? rewardsData.redeemed : []
+        };
+      } catch (e) {
+        return fallbackRewardsData;
+      }
     }
 
     let currentFilter = "all";
@@ -511,6 +647,37 @@
       list.innerHTML = rewards.map(item => buildRewardCard(item, points)).join("");
     }
 
+    function renderRedeemed() {
+      const wrap = document.getElementById("redeemedWrap");
+      const redeemed = currentData.redeemed || [];
+
+      if (!redeemed.length) {
+        wrap.innerHTML = `
+          <div class="empty-card">
+            <p class="empty-card-title">Non hai ancora riscattato premi</p>
+            <p class="empty-card-text">
+              Continua ad accumulare punti con la tua fidelity per sbloccare i primi vantaggi.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      wrap.innerHTML = `
+        <div class="redeemed-list">
+          ${redeemed.map(item => `
+            <article class="redeemed-item">
+              <div class="redeemed-icon">${item.icon || "🎁"}</div>
+              <div class="redeemed-text">
+                <p class="redeemed-name">${item.name || "Premio riscattato"}</p>
+                <p class="redeemed-meta">${item.meta || ""}</p>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
     function setFilter(filter) {
       currentFilter = filter;
       document.querySelectorAll(".filter-pill").forEach(btn => {
@@ -558,6 +725,7 @@
     });
 
     renderRewards();
+    renderRedeemed();
   </script>
 </body>
 </html>
