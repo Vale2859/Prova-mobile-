@@ -274,7 +274,6 @@
         background: linear-gradient(135deg, #69b5af 0%, #47a9b0 100%);
       }
 
-      /* SLIDER */
       body.mobile-preview-mode .mobile-preview-slider {
         width: 100%;
         overflow: hidden;
@@ -473,7 +472,11 @@
   document.body.classList.add("mobile-preview-mode");
 
   Array.from(document.body.children).forEach((child) => {
-    if (child.tagName !== "SCRIPT" && child.tagName !== "STYLE" && child.id !== "mobile-preview-root") {
+    if (
+      child.tagName !== "SCRIPT" &&
+      child.tagName !== "STYLE" &&
+      child.id !== "mobile-preview-root"
+    ) {
       child.classList.add("mobile-preview-original-hide");
     }
   });
@@ -495,7 +498,9 @@
     <div class="mobile-preview-statusbar">
       <div class="mobile-preview-statusbar-inner glass-card">
         <span class="status-dot" id="mobilePreviewStatusDot"></span>
-        <div class="status-text" id="mobilePreviewStatusText">Siamo aperti <span class="light">| Chiudiamo alle 20:00</span></div>
+        <div class="status-text" id="mobilePreviewStatusText">
+          Siamo aperti <span class="light">| Chiudiamo alle 20:00</span>
+        </div>
       </div>
     </div>
 
@@ -508,7 +513,11 @@
       </div>
 
       <div class="mobile-preview-mia">
-        <img src="${miaSrc}" alt="MIA assistente farmacia" onerror="this.onerror=null;this.src='mia.png?v=2';this.style.display='block';">
+        <img
+          src="${miaSrc}"
+          alt="MIA assistente farmacia"
+          onerror="this.onerror=null;this.src='mia.png?v=2';this.style.display='block';"
+        >
       </div>
     </a>
 
@@ -518,7 +527,12 @@
         <span>Chiama</span>
       </a>
 
-      <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener noreferrer" class="mobile-preview-action action-whatsapp">
+      <a
+        href="https://wa.me/${CONFIG.whatsapp}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-preview-action action-whatsapp"
+      >
         <span class="icon">💬</span>
         <span>WhatsApp</span>
       </a>
@@ -573,7 +587,11 @@
         <div class="mobile-preview-slider-page">
           <div class="mobile-preview-grid">
             <a href="punti.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.punti}" alt="Punti" onerror="this.onerror=null;this.src='images/promo.jpg';">
+              <img
+                src="${CONFIG.extraCardImages.punti}"
+                alt="Punti"
+                onerror="this.onerror=null;this.src='images/promo.jpg';"
+              >
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Punti</h3>
                 <p class="mobile-preview-card-text">Saldo e premi</p>
@@ -581,7 +599,11 @@
             </a>
 
             <a href="fortuna.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.fortuna}" alt="Fortuna" onerror="this.onerror=null;this.src='images/promo.jpg';">
+              <img
+                src="${CONFIG.extraCardImages.fortuna}"
+                alt="Fortuna"
+                onerror="this.onerror=null;this.src='images/promo.jpg';"
+              >
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Fortuna</h3>
                 <p class="mobile-preview-card-text">Gioca oggi</p>
@@ -589,7 +611,11 @@
             </a>
 
             <a href="premi.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.premi}" alt="Premi" onerror="this.onerror=null;this.src='images/promo.jpg';">
+              <img
+                src="${CONFIG.extraCardImages.premi}"
+                alt="Premi"
+                onerror="this.onerror=null;this.src='images/promo.jpg';"
+              >
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Premi</h3>
                 <p class="mobile-preview-card-text">Riscatta</p>
@@ -597,7 +623,11 @@
             </a>
 
             <a href="profilo.html" class="mobile-preview-card">
-              <img src="${CONFIG.extraCardImages.profilo}" alt="Profilo" onerror="this.onerror=null;this.src='images/promo.jpg';">
+              <img
+                src="${CONFIG.extraCardImages.profilo}"
+                alt="Profilo"
+                onerror="this.onerror=null;this.src='images/promo.jpg';"
+              >
               <div class="mobile-preview-card-content">
                 <h3 class="mobile-preview-card-title">Profilo</h3>
                 <p class="mobile-preview-card-text">I tuoi dati</p>
@@ -623,7 +653,6 @@
   if (sliderTrack && sliderDots.length) {
     sliderTrack.addEventListener("scroll", () => {
       const pageIndex = Math.round(sliderTrack.scrollLeft / sliderTrack.offsetWidth);
-
       sliderDots.forEach((dot, index) => {
         dot.classList.toggle("active", index === pageIndex);
       });
@@ -686,11 +715,11 @@
     if (isOpen) {
       dot.style.background = "#2aa06f";
       dot.style.boxShadow = "0 0 0 6px rgba(42,160,111,0.10)";
-      text.innerHTML = \`Siamo aperti <span class="light">| \${message}</span>\`;
+      text.innerHTML = `Siamo aperti <span class="light">| ${message}</span>`;
     } else {
       dot.style.background = "#db6b6b";
       dot.style.boxShadow = "0 0 0 6px rgba(219,107,107,0.10)";
-      text.innerHTML = \`Siamo chiusi <span class="light">| \${message}</span>\`;
+      text.innerHTML = `Siamo chiusi <span class="light">| ${message}</span>`;
     }
   })();
 })();
