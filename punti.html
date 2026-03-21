@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Punti | Farmacia Montesano</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#f3f7f5;
+      --card:#ffffff;
+      --text:#18352f;
+      --text-soft:#6d7d77;
+      --green:#0d7a5f;
+      --green-2:#4fa38f;
+      --green-3:#dff2eb;
+      --line:#e5eeea;
+      --shadow:0 16px 34px rgba(16,50,42,0.08);
+      --radius:24px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:"Inter",sans-serif;
+      background:
+        radial-gradient(circle at top left, #fcfffd 0%, #f4f8f6 45%, #eef4f1 100%);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+
+    .page{
+      width:min(100%, 430px);
+      margin:0 auto;
+      min-height:100vh;
+      padding:14px 14px 28px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .back-btn{
+      width:44px;
+      height:44px;
+      border:none;
+      border-radius:14px;
+      background:rgba(255,255,255,0.84);
+      box-shadow:var(--shadow);
+      font-size:22px;
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    .title-wrap{
+      flex:1;
+      min-width:0;
+    }
+
+    .page-title{
+      margin:0;
+      font-size:1.7rem;
+      line-height:1;
+      font-weight:900;
+      letter-spacing:-0.04em;
+    }
+
+    .page-subtitle{
+      margin:5px 0 0;
+      font-size:.95rem;
+      color:var(--text-soft);
+      font-weight:600;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:30px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.28) 0%, rgba(255,255,255,0) 35%),
+        linear-gradient(135deg, #197a62 0%, #58ad9a 100%);
+      color:#fff;
+      box-shadow:0 22px 40px rgba(13,122,95,0.18);
+      padding:20px 18px 18px;
+      margin-bottom:16px;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      right:-20px;
+      top:-14px;
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 72%);
+      pointer-events:none;
+    }
+
+    .hero-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:18px;
+    }
+
+    .hero-label{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.16);
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+
+    .level-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.16);
+      font-size:.82rem;
+      font-weight:800;
+    }
+
+    .points-big{
+      font-size:3.8rem;
+      line-height:.9;
+      font-weight:900;
+      letter-spacing:-0.08em;
+      margin:0;
+    }
+
+    .points-text{
+      margin:8px 0 0;
+      font-size:1.15rem;
+      font-weight:700;
+      opacity:.96;
+    }
+
+    .hero-bottom{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .mini-stat{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:18px;
+      padding:12px;
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+
+    .mini-stat-label{
+      margin:0 0 4px;
+      font-size:.78rem;
+      font-weight:700;
+      opacity:.88;
+    }
+
+    .mini-stat-value{
+      margin:0;
+      font-size:1.02rem;
+      font-weight:900;
+      line-height:1.15;
+    }
+
+    .section{
+      margin-top:16px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:12px;
+    }
+
+    .section-title{
+      margin:0;
+      font-size:1.55rem;
+      line-height:1.02;
+      font-weight:900;
+      letter-spacing:-0.04em;
+    }
+
+    .section-link{
+      color:var(--green);
+      font-size:.95rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    .cards-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .info-card{
+      background:rgba(255,255,255,0.88);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      min-height:128px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .info-card.soft{
+      background:linear-gradient(180deg, #ffffff 0%, #f6fbf8 100%);
+    }
+
+    .info-label{
+      margin:0 0 8px;
+      font-size:.88rem;
+      color:var(--text-soft);
+      font-weight:700;
+      line-height:1.25;
+    }
+
+    .gain{
+      margin:0;
+      font-size:1.2rem;
+      font-weight:900;
+      color:var(--green);
+      line-height:1;
+    }
+
+    .gain small{
+      font-size:.92rem;
+      font-weight:800;
+    }
+
+    .date{
+      margin-top:8px;
+      font-size:.86rem;
+      color:var(--text-soft);
+      font-weight:600;
+    }
+
+    .action-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .action-card{
+      background:linear-gradient(180deg, #ffffff 0%, #f4faf7 100%);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      min-height:122px;
+      padding:16px 14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .action-title{
+      margin:0;
+      font-size:1.05rem;
+      line-height:1.1;
+      font-weight:900;
+      letter-spacing:-0.02em;
+    }
+
+    .action-sub{
+      margin:6px 0 0;
+      font-size:.9rem;
+      line-height:1.35;
+      color:var(--text-soft);
+      font-weight:600;
+    }
+
+    .action-emoji{
+      font-size:2rem;
+      line-height:1;
+      align-self:flex-end;
+      opacity:.9;
+    }
+
+    .received-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .received-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .received-icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      font-size:1.3rem;
+      background:var(--green-3);
+      flex:0 0 48px;
+    }
+
+    .received-text{
+      min-width:0;
+      flex:1;
+    }
+
+    .received-name{
+      margin:0 0 4px;
+      font-size:1rem;
+      font-weight:900;
+      line-height:1.1;
+    }
+
+    .received-meta{
+      margin:0;
+      font-size:.88rem;
+      color:var(--text-soft);
+      font-weight:600;
+      line-height:1.35;
+    }
+
+    .big-cta{
+      margin-top:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:58px;
+      width:100%;
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(135deg, #1e8b6c 0%, #69b09d 100%);
+      color:#fff;
+      font-size:1.05rem;
+      font-weight:900;
+      box-shadow:0 18px 34px rgba(30,139,108,0.2);
+      cursor:pointer;
+    }
+
+    .small-note{
+      margin:14px 4px 0;
+      font-size:.86rem;
+      line-height:1.45;
+      color:var(--text-soft);
+      font-weight:600;
+      text-align:center;
+    }
+
+    @media (max-width: 390px){
+      .page{padding:12px 12px 24px}
+      .points-big{font-size:3.3rem}
+      .section-title{font-size:1.42rem}
+      .info-card,.action-card{min-height:116px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <button class="back-btn" onclick="history.back()" aria-label="Indietro">←</button>
+      <div class="title-wrap">
+        <h1 class="page-title">Punti</h1>
+        <p class="page-subtitle">Il tuo saldo e i vantaggi della farmacia</p>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-top">
+        <span class="hero-label">Carta fedeltà</span>
+        <span class="level-badge" id="customerLevel">Livello Gold</span>
+      </div>
+
+      <h2 class="points-big" id="pointsValue">3.180</h2>
+      <p class="points-text">Punti disponibili</p>
+
+      <div class="hero-bottom">
+        <div class="mini-stat">
+          <p class="mini-stat-label">Prossimo premio</p>
+          <p class="mini-stat-value" id="nextReward">Voucher beauty</p>
+        </div>
+        <div class="mini-stat">
+          <p class="mini-stat-label">Ti mancano</p>
+          <p class="mini-stat-value" id="pointsMissing">120 punti</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3 class="section-title">Le tue attività</h3>
+        <a href="#" class="section-link">Vedi tutto</a>
+      </div>
+
+      <div class="cards-2" id="activityCards">
+        <article class="info-card soft">
+          <div>
+            <p class="info-label">Ultimo acquisto</p>
+            <p class="gain">+480 <small>punti</small></p>
+          </div>
+          <p class="date">22 Aprile 2026</p>
+        </article>
+
+        <article class="info-card soft">
+          <div>
+            <p class="info-label">Bonus evento farmacia</p>
+            <p class="gain">+300 <small>punti</small></p>
+          </div>
+          <p class="date">15 Aprile 2026</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3 class="section-title">Usa i tuoi punti</h3>
+      </div>
+
+      <div class="action-grid">
+        <a href="premi.html" class="action-card">
+          <div>
+            <h4 class="action-title">Sfoglia il catalogo premi</h4>
+            <p class="action-sub">Scopri prodotti, voucher e omaggi riscattabili.</p>
+          </div>
+          <div class="action-emoji">🎁</div>
+        </a>
+
+        <a href="premi.html" class="action-card">
+          <div>
+            <h4 class="action-title">Usa i punti per un voucher</h4>
+            <p class="action-sub">Trasforma i punti in vantaggi reali della farmacia.</p>
+          </div>
+          <div class="action-emoji">💚</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h3 class="section-title">Premi già ricevuti</h3>
+      </div>
+
+      <div class="received-list" id="receivedList">
+        <article class="received-item">
+          <div class="received-icon">🧴</div>
+          <div class="received-text">
+            <p class="received-name">Crema viso omaggio</p>
+            <p class="received-meta">Ricevuta con evento beauty · 10 Aprile 2026</p>
+          </div>
+        </article>
+
+        <article class="received-item">
+          <div class="received-icon">☕</div>
+          <div class="received-text">
+            <p class="received-name">Tisana benessere</p>
+            <p class="received-meta">Premio riscattato · 28 Marzo 2026</p>
+          </div>
+        </article>
+
+        <article class="received-item">
+          <div class="received-icon">🎟️</div>
+          <div class="received-text">
+            <p class="received-name">Voucher analisi pelle</p>
+            <p class="received-meta">Bonus farmacia · 18 Marzo 2026</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <button class="big-cta" onclick="goToHowToEarn()">
+      <span>✓</span>
+      <span>Guarda come guadagnare punti</span>
+    </button>
+
+    <p class="small-note">
+      I premi e i bonus possono cambiare in base agli eventi, alle promozioni e alle iniziative della Farmacia Montesano.
+    </p>
+  </main>
+
+  <script>
+    const demoData = {
+      points: 3180,
+      level: "Livello Gold",
+      nextReward: "Voucher beauty",
+      missing: 120,
+      activities: [
+        { label: "Ultimo acquisto", points: 480, date: "22 Aprile 2026" },
+        { label: "Bonus evento farmacia", points: 300, date: "15 Aprile 2026" }
+      ],
+      received: [
+        { icon: "🧴", name: "Crema viso omaggio", meta: "Ricevuta con evento beauty · 10 Aprile 2026" },
+        { icon: "☕", name: "Tisana benessere", meta: "Premio riscattato · 28 Marzo 2026" },
+        { icon: "🎟️", name: "Voucher analisi pelle", meta: "Bonus farmacia · 18 Marzo 2026" }
+      ]
+    };
+
+    function formatPoints(num) {
+      return new Intl.NumberFormat("it-IT").format(num);
+    }
+
+    function loadPointsData() {
+      try {
+        const saved = localStorage.getItem("farmaciaPuntiData");
+        if (!saved) return demoData;
+        const parsed = JSON.parse(saved);
+        return { ...demoData, ...parsed };
+      } catch (e) {
+        return demoData;
+      }
+    }
+
+    function renderPage() {
+      const data = loadPointsData();
+
+      document.getElementById("pointsValue").textContent = formatPoints(data.points || 0);
+      document.getElementById("customerLevel").textContent = data.level || "Livello Cliente";
+      document.getElementById("nextReward").textContent = data.nextReward || "Premio disponibile";
+      document.getElementById("pointsMissing").textContent = `${data.missing || 0} punti`;
+
+      const activityCards = document.getElementById("activityCards");
+      if (Array.isArray(data.activities) && data.activities.length) {
+        activityCards.innerHTML = data.activities.slice(0, 2).map(item => `
+          <article class="info-card soft">
+            <div>
+              <p class="info-label">${item.label}</p>
+              <p class="gain">+${formatPoints(item.points)} <small>punti</small></p>
+            </div>
+            <p class="date">${item.date}</p>
+          </article>
+        `).join("");
+      }
+
+      const receivedList = document.getElementById("receivedList");
+      if (Array.isArray(data.received) && data.received.length) {
+        receivedList.innerHTML = data.received.map(item => `
+          <article class="received-item">
+            <div class="received-icon">${item.icon}</div>
+            <div class="received-text">
+              <p class="received-name">${item.name}</p>
+              <p class="received-meta">${item.meta}</p>
+            </div>
+          </article>
+        `).join("");
+      }
+    }
+
+    function goToHowToEarn() {
+      alert("Qui poi collegheremo la pagina con le regole per guadagnare punti.");
+    }
+
+    renderPage();
+  </script>
+</body>
+</html>
