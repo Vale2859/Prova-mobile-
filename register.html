@@ -444,11 +444,12 @@
         received: []
       };
 
-      localStorage.setItem("farmaciaProfileData", JSON.stringify(profileData));
-      localStorage.setItem("farmaciaCurrentUser", JSON.stringify(currentUser));
-      localStorage.setItem("farmaciaLoggedIn", "true");
-      localStorage.setItem("farmaciaPrivacyData", JSON.stringify(privacyData));
-      localStorage.setItem("farmaciaPuntiData", JSON.stringify(pointsData));
+     localStorage.setItem("farmaciaProfileData", JSON.stringify(profileData));
+localStorage.setItem("farmaciaCurrentUser", JSON.stringify(currentUser));
+localStorage.setItem("farmaciaLoggedIn", "true");
+localStorage.setItem("farmaciaPrivacyData", JSON.stringify(privacyData));
+localStorage.setItem("farmaciaPuntiData", JSON.stringify(pointsData));
+localStorage.setItem("farmaciaPasswordDemo", password);
 
       showSuccess("Registrazione completata con successo. Verrai reindirizzato tra pochi secondi.");
 
