@@ -586,7 +586,7 @@
 
         <div class="mobile-preview-slider-page">
           <div class="mobile-preview-grid">
-            <a href="punti.html" class="mobile-preview-card">
+            <a href="fidelity.html" class="mobile-preview-card">
               <img
                 src="${CONFIG.extraCardImages.punti}"
                 alt="Punti"
