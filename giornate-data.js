@@ -20,7 +20,7 @@ window.GiornateData = [
     "🎁 Omaggi esclusivi",
     "💄 Consigli personalizzati"
   ],
-  attiva: true
+  attiva: false
 },
 
 /* =========================
@@ -73,7 +73,7 @@ window.GiornateData = [
   dataEvento: "2026-05-10",
   dataInizio: "2026-05-01",
   dataFine: "2026-05-10",
-  attiva: true
+  attiva: false
 },
 
 /* =========================
