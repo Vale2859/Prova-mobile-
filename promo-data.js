@@ -16,7 +16,7 @@ window.PromoData = [
   prezzoNuovo: "€8,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 /* =========================
@@ -34,7 +34,7 @@ window.PromoData = [
   prezzoNuovo: "€11,90",
   dataInizio: "2026-03-10",
   dataFine: "2026-04-05",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -47,7 +47,7 @@ window.PromoData = [
   prezzoNuovo: "€14,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -60,7 +60,7 @@ window.PromoData = [
   prezzoNuovo: "€18,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -73,7 +73,7 @@ window.PromoData = [
   prezzoNuovo: "€16,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -86,7 +86,7 @@ window.PromoData = [
   prezzoNuovo: "€13,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 /* =========================
@@ -105,7 +105,7 @@ window.PromoData = [
   prezzoNuovo: "€13,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-04-30",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -119,7 +119,7 @@ window.PromoData = [
   prezzoNuovo: "€17,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-04-30",
-  attiva: true
+  attiva: false
 },
 
 /* =========================
@@ -138,7 +138,7 @@ window.PromoData = [
   prezzoNuovo: "€11,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -152,7 +152,7 @@ window.PromoData = [
   prezzoNuovo: "€8,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -166,7 +166,7 @@ window.PromoData = [
   prezzoNuovo: "€14,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -180,7 +180,7 @@ window.PromoData = [
   prezzoNuovo: "€18,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -194,7 +194,7 @@ window.PromoData = [
   prezzoNuovo: "€16,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 },
 
 {
@@ -208,7 +208,7 @@ window.PromoData = [
   prezzoNuovo: "€13,90",
   dataInizio: "2026-03-01",
   dataFine: "2026-03-31",
-  attiva: true
+  attiva: false
 }
 
 ];
